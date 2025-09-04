@@ -1,0 +1,3226 @@
+import React, { useState } from "react";
+import { CheckCircle, ArrowRight, Target, Clock, TrendingUp, Shield, Globe, Star, Brain, Cpu, Zap, FileJson, Cloud, Server, Building2, Database, Workflow, BarChart3, Settings, Scan, Layers, Users, Receipt, FileText, DollarSign, Heart, CreditCard, GraduationCap, Factory, Truck, Quote, Award, Handshake, Network, Code, BookOpen, Video, HelpCircle, Download, Calendar, ExternalLink, Lightbulb, Play, Eye, MessageSquare, Mail, Phone, MapPin, Briefcase, Newspaper, Coffee } from "lucide-react";
+
+export default function Dashboard() {
+  const [activeTab, setActiveTab] = useState('ai-processing');
+  const [industryTab, setIndustryTab] = useState('perbankan');
+  const [partnerTab, setPartnerTab] = useState('technology');
+  const [resourceTab, setResourceTab] = useState('blog');
+  const [companyTab, setCompanyTab] = useState('about');
+
+  const handleNavigation = (url) => {
+    window.location.href = url;
+  };
+
+  const handleGetStartedClick = () => {
+    handleNavigation('/free-trial');
+  };
+
+  const handleDemoClick = () => {
+    handleNavigation('/demo');
+  };
+
+  // Industry Pages Data
+  const industryPages = [
+    {
+      id: "perbankan",
+      name: "Perbankan",
+      icon: <Building2 className="w-8 h-8" />,
+      description: "Solusi pemrosesan dokumen untuk transformasi digital perbankan",
+      realUseCases: [
+        {
+          title: "Originasi Kredit Digital",
+          problem: "Proses manual aplikasi kredit memakan waktu 2 minggu dengan tingkat error tinggi",
+          solution: "Automasi end-to-end verifikasi dokumen, scoring risiko, dan approval workflow",
+          result: "Waktu pemrosesan turun 85%, dari 14 hari ke 2 hari dengan akurasi 99.8%"
+        },
+        {
+          title: "KYC/AML Compliance",
+          problem: "Review manual dokumen identitas rentan error dan memakan waktu lama",
+          solution: "Verifikasi identitas otomatis dengan deteksi fraud terintegrasi",
+          result: "100% compliance rate dengan pengurangan waktu verifikasi 90%"
+        }
+      ],
+      mainBenefits: [
+        "Percepatan time-to-market produk finansial baru",
+        "Pengurangan risiko operasional dan compliance",
+        "Peningkatan customer experience dan retention",
+        "Optimasi biaya operasional hingga 60%"
+      ],
+      implementationCase: {
+        client: "Bank Regional Terbesar",
+        challenge: "Manual processing 50K+ aplikasi kredit per bulan",
+        timeframe: "6 minggu implementasi",
+        results: [
+          "Processing time: 14 hari → 2 hari",
+          "Kapasitas processing meningkat 300%",
+          "Customer satisfaction +45%",
+          "ROI 420% dalam 12 bulan"
+        ]
+      }
+    },
+    {
+      id: "asuransi",
+      name: "Asuransi",
+      icon: <CreditCard className="w-8 h-8" />,
+      description: "Transformasi digital untuk industri asuransi dan risk management",
+      realUseCases: [
+        {
+          title: "Pemrosesan Klaim Otomatis",
+          problem: "Pemrosesan klaim manual memakan waktu 2 minggu dengan bottleneck di berbagai tahap",
+          solution: "Automasi intake klaim, assessment dokumen, dan workflow approval",
+          result: "Waktu pemrosesan klaim turun 70%, dari 14 hari ke 4 hari"
+        },
+        {
+          title: "Underwriting Intelligence",
+          problem: "Analisis dokumen underwriting manual rentan inkonsistensi dan lambat",
+          solution: "AI-powered risk assessment dengan analisis dokumen otomatis",
+          result: "Akurasi underwriting meningkat 35% dengan waktu proses 80% lebih cepat"
+        }
+      ],
+      mainBenefits: [
+        "Percepatan settlement klaim untuk meningkatkan loyalitas",
+        "Peningkatan akurasi fraud detection hingga 94%",
+        "Optimasi portfolio risk management",
+        "Pengurangan biaya operasional claims processing 50%"
+      ],
+      implementationCase: {
+        client: "Perusahaan Asuransi Umum Terkemuka",
+        challenge: "Proses klaim manual untuk 25K+ klaim per bulan",
+        timeframe: "8 minggu implementasi",
+        results: [
+          "Claim processing: 14 hari → 4 hari",
+          "Fraud detection accuracy +40%",
+          "Customer satisfaction +35%",
+          "Operational cost reduction 50%"
+        ]
+      }
+    },
+    {
+      id: "kesehatan",
+      name: "Kesehatan",
+      icon: <Heart className="w-8 h-8" />,
+      description: "Digitalisasi healthcare untuk meningkatkan kualitas pelayanan pasien",
+      realUseCases: [
+        {
+          title: "Digital Patient Onboarding",
+          problem: "Proses registrasi pasien manual memakan waktu lama dan rentan error",
+          solution: "Digitalisasi formulir intake dengan verifikasi asuransi otomatis",
+          result: "Waktu registrasi turun 75% dengan akurasi data 99.5%"
+        },
+        {
+          title: "Medical Records Digitization",
+          problem: "Rekam medis paper-based sulit diakses dan berisiko hilang",
+          solution: "Konversi otomatis rekam medis fisik ke format digital terstruktur",
+          result: "100% digitalisasi dengan searchable medical history"
+        }
+      ],
+      mainBenefits: [
+        "Peningkatan kualitas dan aksesibilitas layanan pasien",
+        "Compliance penuh dengan regulasi kesehatan nasional",
+        "Efisiensi operasional dan pengurangan beban administratif",
+        "Integrasi seamless dengan sistem SIMRS existing"
+      ],
+      implementationCase: {
+        client: "Rumah Sakit Jaringan Nasional",
+        challenge: "Digitalisasi 50+ lokasi dengan 100K+ rekam medis",
+        timeframe: "12 minggu implementasi bertahap",
+        results: [
+          "Patient registration: 30 menit → 5 menit",
+          "Medical records accessibility 100%",
+          "Administrative cost reduction 60%",
+          "Staff productivity +40%"
+        ]
+      }
+    },
+    {
+      id: "logistik",
+      name: "Logistik",
+      icon: <Truck className="w-8 h-8" />,
+      description: "Optimasi supply chain dan dokumentasi logistik end-to-end",
+      realUseCases: [
+        {
+          title: "Supply Chain Documentation",
+          problem: "Dokumentasi manual shipping dan customs menimbulkan delay dan error",
+          solution: "Automasi pemrosesan bill of lading, customs documents, dan tracking",
+          result: "Pengurangan processing time 80% dengan 100% accuracy"
+        },
+        {
+          title: "Vendor Onboarding Automation",
+          problem: "Onboarding vendor baru memakan waktu 4-6 minggu dengan review manual",
+          solution: "Digitalisasi dan verifikasi otomatis dokumen legal dan sertifikasi vendor",
+          result: "Vendor onboarding dipercepat menjadi 3-5 hari"
+        }
+      ],
+      mainBenefits: [
+        "Real-time visibility across entire supply chain",
+        "Compliance automation untuk regulasi ekspor-impor",
+        "Optimasi inventory management dan demand forecasting",
+        "Pengurangan operational costs hingga 45%"
+      ],
+      implementationCase: {
+        client: "Perusahaan Logistik Multinasional",
+        challenge: "Standardisasi dokumentasi di 15 negara Asia",
+        timeframe: "10 minggu implementasi regional",
+        results: [
+          "Document processing: 2 hari → 4 jam",
+          "Cross-border compliance 100%",
+          "Operational efficiency +65%",
+          "Customer satisfaction +50%"
+        ]
+      }
+    },
+    {
+      id: "pendidikan",
+      name: "Pendidikan",
+      icon: <GraduationCap className="w-8 h-8" />,
+      description: "Modernisasi administrasi pendidikan dan manajemen akademik",
+      realUseCases: [
+        {
+          title: "Student Application Processing",
+          problem: "Pemrosesan manual 50K+ aplikasi mahasiswa baru memakan waktu 2 bulan",
+          solution: "Automasi verifikasi dokumen akademik, scoring, dan workflow penerimaan",
+          result: "Waktu pemrosesan aplikasi turun 70%, dari 8 minggu ke 2 minggu"
+        },
+        {
+          title: "Academic Records Management",
+          problem: "Manajemen transkrip dan sertifikat manual rentan fraud dan slow retrieval",
+          solution: "Digitalisasi dengan blockchain verification dan instant access",
+          result: "Akses real-time dengan 100% authenticity verification"
+        }
+      ],
+      mainBenefits: [
+        "Peningkatan efisiensi administrasi akademik",
+        "Transparansi dan aksesibilitas informasi mahasiswa",
+        "Compliance dengan regulasi pendidikan nasional",
+        "User experience yang lebih baik untuk mahasiswa dan staff"
+      ],
+      implementationCase: {
+        client: "Universitas Negeri Terkemuka",
+        challenge: "Digitalisasi administrasi 45K+ mahasiswa",
+        timeframe: "16 minggu implementasi kampus-wide",
+        results: [
+          "Application processing: 8 minggu → 2 minggu",
+          "Document retrieval: 2 hari → instant",
+          "Administrative workload -50%",
+          "Student satisfaction +60%"
+        ]
+      }
+    },
+    {
+      id: "manufaktur",
+      name: "Manufaktur",
+      icon: <Factory className="w-8 h-8" />,
+      description: "Digitalisasi quality control dan supply chain manufacturing",
+      realUseCases: [
+        {
+          title: "Quality Control Documentation",
+          problem: "Manual QC reporting di multiple facilities memakan waktu dan rentan error",
+          solution: "Automasi capture dan analysis QC data dengan real-time reporting",
+          result: "QC reporting time turun 85% dengan 99% accuracy"
+        },
+        {
+          title: "Supplier Compliance Management",
+          problem: "Tracking compliance certificates dari 500+ suppliers secara manual",
+          solution: "Automated compliance monitoring dengan alert system untuk expiry",
+          result: "100% supplier compliance dengan zero manual tracking"
+        }
+      ],
+      mainBenefits: [
+        "Real-time quality insights dan predictive analytics",
+        "Compliance automation untuk standar internasional",
+        "Optimasi supply chain dengan transparent tracking",
+        "Pengurangan manufacturing costs hingga 35%"
+      ],
+      implementationCase: {
+        client: "Manufacturer Automotive Terbesar",
+        challenge: "Quality standardization di 8 plants",
+        timeframe: "12 minggu implementasi multi-site",
+        results: [
+          "QC processing: 4 jam → 20 menit",
+          "Supplier compliance: manual → 100% automated",
+          "Quality incidents -75%",
+          "Manufacturing efficiency +40%"
+        ]
+      }
+    }
+  ];
+
+  const platformFeatures = [
+    {
+      id: 'ai-processing',
+      icon: <Brain className="w-10 h-10" />,
+      title: 'AI Processing',
+      description: 'Pemrosesan dokumen dengan teknologi AI terdepan',
+      features: [
+        'Pengenalan struktur dokumen otomatis tanpa template',
+        'Model AI yang terus belajar dan beradaptasi',
+        'Support dokumen semi-struktur dan tidak terstruktur',
+        'Akurasi tinggi untuk berbagai jenis dokumen'
+      ],
+      capabilities: [
+        { name: 'Document Types', value: '100+' },
+        { name: 'Languages Supported', value: '40+' },
+        { name: 'Accuracy Rate', value: '99.8%' },
+        { name: 'Processing Speed', value: '<30s' }
+      ]
+    },
+    {
+      id: 'json-output',
+      icon: <FileJson className="w-10 h-10" />,
+      title: 'JSON Output',
+      description: 'Output terstruktur siap integrasi',
+      features: [
+        'Output JSON terstandarisasi dan konsisten',
+        'Integrasi langsung ke ERP, CRM, dan RPA',
+        'RESTful API dengan dokumentasi lengkap',
+        'Real-time processing dan response'
+      ],
+      capabilities: [
+        { name: 'API Endpoints', value: '15+' },
+        { name: 'Response Time', value: '<2s' },
+        { name: 'Uptime SLA', value: '99.9%' },
+        { name: 'Integrations', value: '50+' }
+      ]
+    },
+    {
+      id: 'no-template',
+      icon: <Zap className="w-10 h-10" />,
+      title: 'Tanpa Template',
+      description: 'Zero setup untuk dokumen baru',
+      features: [
+        'Zero setup untuk dokumen baru',
+        'Tidak perlu training data atau konfigurasi manual',
+        'Adaptasi otomatis terhadap format dokumen baru',
+        'Penghematan waktu setup hingga 95%'
+      ],
+      capabilities: [
+        { name: 'Setup Time', value: '0 min' },
+        { name: 'Training Required', value: 'None' },
+        { name: 'Format Adaptation', value: 'Auto' },
+        { name: 'Time Savings', value: '95%' }
+      ]
+    },
+    {
+      id: 'deployment',
+      icon: <Cloud className="w-10 h-10" />,
+      title: 'Deployment Fleksibel',
+      description: 'Pilihan deployment sesuai kebutuhan',
+      features: [
+        'SaaS (Cloud) - Fully managed dengan auto-scaling',
+        'On-Premise - Kontrol penuh dan security maksimum',
+        'Private Cloud - Dedicated infrastructure',
+        'Hybrid deployment untuk fleksibilitas maksimal'
+      ],
+      capabilities: [
+        { name: 'Deployment Options', value: '4' },
+        { name: 'Security Standards', value: 'ISO 27001' },
+        { name: 'Compliance', value: 'Multi-region' },
+        { name: 'Scalability', value: 'Auto' }
+      ]
+    }
+  ];
+
+  const deploymentOptions = [
+    {
+      title: 'SaaS (Cloud)',
+      subtitle: 'Solusi cloud fully-managed',
+      icon: <Cloud className="w-8 h-8" />,
+      description: 'Platform cloud yang sepenuhnya dikelola dengan skalabilitas otomatis',
+      features: [
+        'Setup dalam 5 menit',
+        'Auto-scaling berdasarkan volume',
+        'Global CDN untuk performa optimal',
+        'Monitoring 24/7 dan support'
+      ],
+      bestFor: 'Startup hingga enterprise yang ingin deployment cepat',
+      pricing: 'Pay per document',
+      highlight: 'Most Popular'
+    },
+    {
+      title: 'On-Premise',
+      subtitle: 'Kontrol penuh infrastruktur',
+      icon: <Server className="w-8 h-8" />,
+      description: 'Deployment di infrastruktur internal untuk kontrol maksimum',
+      features: [
+        'Data tetap di internal infrastructure',
+        'Kustomisasi mendalam sesuai kebutuhan',
+        'Air-gapped deployment untuk security maksimum',
+        'Integration dengan existing security systems'
+      ],
+      bestFor: 'Enterprise dengan requirement keamanan tinggi',
+      pricing: 'Annual license',
+      highlight: 'Maximum Security'
+    },
+    {
+      title: 'Private Cloud',
+      subtitle: 'Dedicated cloud resources',
+      icon: <Shield className="w-8 h-8" />,
+      description: 'Cloud privat khusus dengan dedicated resources',
+      features: [
+        'Dedicated compute dan storage resources',
+        'Custom compliance dan data residency',
+        'Enhanced security controls',
+        'SLA khusus dan prioritas support'
+      ],
+      bestFor: 'Regulated industries dan large enterprises',
+      pricing: 'Monthly subscription',
+      highlight: 'Enterprise Grade'
+    }
+  ];
+
+  const integrations = [
+    {
+      category: 'Enterprise Systems',
+      systems: ['SAP S/4HANA', 'Oracle ERP', 'Microsoft Dynamics', 'Workday'],
+      icon: <Building2 className="w-5 h-5" />
+    },
+    {
+      category: 'Document Management',
+      systems: ['SharePoint', 'Box', 'Dropbox', 'Google Drive'],
+      icon: <Database className="w-5 h-5" />
+    },
+    {
+      category: 'RPA & Automation',
+      systems: ['UiPath', 'Automation Anywhere', 'Blue Prism', 'Power Automate'],
+      icon: <Workflow className="w-5 h-5" />
+    },
+    {
+      category: 'Business Intelligence',
+      systems: ['Power BI', 'Tableau', 'Qlik', 'Looker'],
+      icon: <BarChart3 className="w-5 h-5" />
+    }
+  ];
+
+  const partnershipOpportunities = [
+    {
+      title: "Technology Integration Partners",
+  description: "Integrasikan solusi Anda dengan platform snapint untuk memberikan nilai tambah kepada pelanggan bersama.",
+      icon: <Code className="w-8 h-8" />,
+      opportunities: [
+        "Pre-built connectors untuk ERP/CRM systems",
+        "White-label document processing capabilities",
+        "Embedded AI processing dalam platform Anda",
+        "Co-development untuk industry-specific solutions"
+      ],
+      benefits: [
+        "Akses early ke new features dan APIs",
+        "Technical support dan documentation prioritas",
+        "Co-marketing opportunities dan joint case studies",
+        "Revenue sharing dari customer referrals"
+      ],
+      ideal: "Software vendors, system integrators, consultants"
+    },
+    {
+      title: "Reseller & Distribution Partners",
+  description: "Perluas portfolio solusi Anda dengan menjadi reseller snapint di wilayah atau vertikal industri tertentu.",
+      icon: <Building2 className="w-8 h-8" />,
+      opportunities: [
+        "Exclusive territory atau industry vertical rights",
+        "White-label branding options",
+        "Custom pricing dan packaging models",
+        "Local language dan compliance support"
+      ],
+      benefits: [
+        "Margin yang kompetitif dengan volume scaling",
+        "Sales training dan certification programs",
+        "Marketing development funds (MDF)",
+        "Dedicated channel manager support"
+      ],
+      ideal: "VAR, distributors, consultants, regional players"
+    },
+    {
+      title: "Strategic Alliance Partners",
+      description: "Bentuk aliansi strategis untuk go-to-market bersama dan pengembangan solusi terintegrasi.",
+      icon: <Handshake className="w-8 h-8" />,
+      opportunities: [
+        "Joint solution development dan packaging",
+        "Co-innovation untuk emerging technologies",
+        "Shared customer success programs",
+        "Cross-training sales dan technical teams"
+      ],
+      benefits: [
+        "Access ke customer base dan ecosystem",
+        "Joint marketing campaigns dan events",
+        "Preferred partner status dan visibility",
+        "Strategic roadmap alignment"
+      ],
+      ideal: "Enterprise software companies, cloud providers, consultancies"
+    }
+  ];
+
+  const partnerBenefits = [
+    {
+      category: "Business Growth",
+      benefits: [
+        {
+          title: "Revenue Opportunities",
+          description: "Multiple revenue streams melalui direct sales, referrals, dan value-added services",
+          icon: <DollarSign className="w-6 h-6" />
+        },
+        {
+          title: "Market Expansion",
+          description: "Akses ke new markets dan customer segments melalui AI document processing",
+          icon: <Globe className="w-6 h-6" />
+        },
+        {
+          title: "Competitive Advantage",
+          description: "Differentiate solusi Anda dengan advanced AI capabilities",
+          icon: <Target className="w-6 h-6" />
+        }
+      ]
+    },
+    {
+      category: "Technical Support",
+      benefits: [
+        {
+          title: "Comprehensive APIs",
+          description: "RESTful APIs dengan documentation lengkap dan SDKs untuk major languages",
+          icon: <Code className="w-6 h-6" />
+        },
+        {
+          title: "Integration Support",
+          description: "Dedicated technical team untuk membantu integration dan troubleshooting",
+          icon: <Settings className="w-6 h-6" />
+        },
+        {
+          title: "Training & Certification",
+          description: "Technical training programs dan partner certification paths",
+          icon: <Award className="w-6 h-6" />
+        }
+      ]
+    },
+    {
+      category: "Marketing & Sales",
+      benefits: [
+        {
+          title: "Co-Marketing Programs",
+          description: "Joint marketing campaigns, events, dan content collaboration",
+          icon: <Network className="w-6 h-6" />
+        },
+        {
+          title: "Sales Enablement",
+          description: "Sales tools, training materials, dan demo environments",
+          icon: <Users className="w-6 h-6" />
+        },
+        {
+          title: "Lead Generation",
+          description: "Qualified leads sharing dan referral programs",
+          icon: <TrendingUp className="w-6 h-6" />
+        }
+      ]
+    }
+  ];
+
+  const partnerTypes = [
+    {
+      type: "Technology Partners",
+  description: "Software companies yang mengintegrasikan snapint ke dalam platform mereka",
+      requirements: [
+        "Existing software platform atau SaaS solution",
+        "Technical team untuk integration development",
+        "Customer base yang membutuhkan document processing",
+        "Commitment untuk long-term partnership"
+      ],
+      benefits: [
+        "Access ke advanced AI document processing",
+        "Increase platform value proposition",
+        "New revenue streams dari enhanced features",
+        "Technical support untuk integration"
+      ],
+      examples: ["ERP vendors", "CRM platforms", "Workflow automation tools", "Industry-specific software"],
+      applicationProcess: [
+        "Submit partnership application form",
+        "Technical compatibility assessment",
+        "Business case review dan approval",
+        "Integration development dan testing",
+        "Go-to-market planning dan launch"
+      ]
+    },
+    {
+      type: "Reseller Partners",
+  description: "Perusahaan yang menjual snapint sebagai bagian dari portfolio solusi mereka",
+      requirements: [
+        "Established sales team dan customer relationships",
+        "Experience dengan enterprise software sales",
+        "Understanding document processing market",
+        "Commitment untuk sales targets"
+      ],
+      benefits: [
+        "Competitive margins dengan volume scaling",
+        "Exclusive territory opportunities",
+        "Sales training dan certification",
+        "Marketing development funds"
+      ],
+      examples: ["System integrators", "Consulting firms", "Regional VARs", "Industry specialists"],
+      applicationProcess: [
+        "Partner application submission",
+        "Sales capability assessment",
+        "Reference checks dan background verification",
+        "Contract negotiation dan signing",
+        "Sales training dan onboarding"
+      ]
+    },
+    {
+      type: "System Integrators",
+  description: "Professional services firms yang mengimplementasikan snapint untuk enterprise customers",
+      requirements: [
+        "Proven track record dalam enterprise implementations",
+        "Technical team dengan integration expertise",
+        "Industry knowledge dan customer relationships",
+        "Capability untuk provide ongoing support"
+      ],
+      benefits: [
+        "Certified implementation methodology",
+        "Technical training dan support",
+        "Customer success programs",
+        "Preferred partner recognition"
+      ],
+      examples: ["Digital transformation consultants", "Enterprise architects", "Industry specialists", "Big 4 consulting"],
+      applicationProcess: [
+        "SI partnership application",
+        "Capability dan experience review",
+        "Technical certification process",
+        "Customer success case development",
+        "Ongoing partnership management"
+      ]
+    }
+  ];
+
+  // Data untuk Resources Section
+  const blogPosts = [
+    {
+      title: "Masa Depan Intelligent Document Processing: Melampaui OCR Tradisional",
+      excerpt: "Jelajahi bagaimana AI-powered document processing merevolusi workflow bisnis dan menetapkan standar baru untuk akurasi dan efisiensi di Indonesia.",
+      category: "Industry Insights",
+      readTime: "8 menit baca",
+      date: "15 Des 2024",
+      featured: true,
+      views: "2.5K",
+      comments: 18
+    },
+    {
+      title: "Implementasi Document AI di Perbankan Indonesia: Panduan Lengkap",
+      excerpt: "Panduan step-by-step untuk institusi keuangan yang ingin mengautomasi loan processing dan KYC compliance dengan AI.",
+      category: "Implementation Guide",
+      readTime: "12 menit baca",
+      date: "10 Des 2024",
+      featured: false,
+      views: "1.8K",
+      comments: 24
+    },
+    {
+      title: "ROI Calculator: Mengukur Kesuksesan Automasi Document Processing",
+      excerpt: "Pelajari cara menghitung dan mendemonstrasikan return on investment dari initiative automasi document processing.",
+      category: "Business Case",
+      readTime: "6 menit baca",
+      date: "5 Des 2024",
+      featured: false,
+      views: "3.1K",
+      comments: 12
+    },
+    {
+      title: "Best Practices Integrasi API untuk Document Processing",
+      excerpt: "Panduan teknis covering authentication, error handling, dan strategi optimasi untuk document processing APIs.",
+      category: "Technical Guide",
+      readTime: "10 menit baca",
+      date: "28 Nov 2024",
+      featured: false,
+      views: "1.2K",
+      comments: 8
+    },
+    {
+      title: "Compliance & Security dalam AI Document Processing",
+      excerpt: "Deep dive into framework keamanan, compliance requirements, dan best practices untuk handling sensitive documents.",
+      category: "Security",
+      readTime: "15 menit baca",
+      date: "20 Nov 2024",
+      featured: false,
+      views: "2.8K",
+      comments: 31
+    }
+  ];
+
+  const caseStudies = [
+    {
+      title: "Bank Mandiri: Transformasi Digital Loan Processing",
+      industry: "Perbankan",
+      company: "Bank Mandiri",
+      challenge: "Pemrosesan aplikasi kredit manual memakan waktu 2 minggu dengan tingkat error tinggi",
+      solution: "Implementasi end-to-end automation untuk document verification dan risk assessment",
+      results: [
+        "Waktu pemrosesan turun 85% (14 hari → 2 hari)",
+        "Kapasitas pemrosesan meningkat 300%",
+        "Customer satisfaction +45%",
+        "ROI 420% dalam 12 bulan"
+      ],
+      downloadCount: "1.2K",
+      category: "Banking Success"
+    },
+    {
+      title: "Astra International: Supply Chain Documentation Automation",
+      industry: "Manufaktur",
+      company: "PT Astra International",
+      challenge: "Manual quality control documentation di 20+ fasilitas global",
+      solution: "Standardisasi QC processing dengan automated compliance monitoring",
+      results: [
+        "QC reporting time -85%",
+        "100% supplier compliance automation",
+        "Quality incidents -75%",
+        "Manufacturing efficiency +40%"
+      ],
+      downloadCount: "890",
+      category: "Manufacturing Excellence"
+    },
+    {
+      title: "RS Siloam: Healthcare Document Digitalization",
+      industry: "Kesehatan",
+      company: "Siloam Hospitals Group",
+      challenge: "Paper-based medical records di 50+ lokasi rumah sakit",
+      solution: "HIPAA-compliant medical records digitization dengan searchable database",
+      results: [
+        "Patient registration: 30 menit → 5 menit",
+        "Medical records accessibility 100%",
+        "Administrative cost -60%",
+        "Staff productivity +40%"
+      ],
+      downloadCount: "756",
+      category: "Healthcare Innovation"
+    }
+  ];
+
+  const whitepapers = [
+    {
+      title: "Panduan Enterprise untuk AI-Powered Document Processing",
+      description: "Analisis komprehensif market trends, technology capabilities, dan strategi implementasi untuk enterprise document automation di Indonesia.",
+      pages: "32 halaman",
+      format: "PDF",
+      category: "Strategy Guide",
+      downloadCount: "3.2K",
+      language: "Bahasa Indonesia"
+    },
+    {
+      title: "Security & Compliance dalam Document AI",
+      description: "Deep dive into security frameworks, compliance requirements, dan best practices untuk handling sensitive documents dengan AI di Indonesia.",
+      pages: "24 halaman",
+      format: "PDF",
+      category: "Security",
+      downloadCount: "2.1K",
+      language: "Bahasa Indonesia"
+    },
+    {
+      title: "Benchmarking Document Processing Solutions 2024",
+      description: "Independent comparison dari leading document processing platforms, featuring performance metrics dan capability analysis untuk market Indonesia.",
+      pages: "18 halaman",
+      format: "PDF",
+      category: "Market Research",
+      downloadCount: "1.8K",
+      language: "Bahasa Indonesia & English"
+    },
+    {
+      title: "ROI Framework: Document Processing Automation",
+      description: "Framework praktis untuk menghitung, mengukur, dan memaksimalkan ROI dari initiative document processing automation.",
+      pages: "16 halaman",
+      format: "PDF",
+      category: "Business Case",
+      downloadCount: "2.7K",
+      language: "Bahasa Indonesia"
+    }
+  ];
+
+  const webinars = [
+    {
+      title: "AI Document Processing: Transformasi Digital untuk Perbankan Indonesia",
+      description: "Webinar khusus untuk industry perbankan tentang implementasi AI document processing untuk loan origination dan KYC compliance.",
+      duration: "45 menit",
+      date: "18 Januari 2025",
+      time: "14:00 WIB",
+      speaker: "Dr. Sarah Wijaya, Head of Digital Banking",
+      registeredCount: 1250,
+      status: "upcoming",
+      category: "Industry Focus"
+    },
+    {
+      title: "Best Practices: Implementasi Document AI di Enterprise",
+      description: "Session praktis covering planning, implementation, dan optimization strategies untuk large-scale document processing projects.",
+      duration: "60 menit",
+      date: "25 Januari 2025",
+      time: "10:00 WIB",
+      speaker: "Michael Santoso, Solutions Architect",
+      registeredCount: 890,
+      status: "upcoming",
+      category: "Technical Deep Dive"
+    },
+    {
+      title: "Healthcare Digital Transformation dengan AI Document Processing",
+      description: "Khusus untuk healthcare professionals: digitalisasi medical records, claims processing, dan compliance automation.",
+      duration: "50 menit",
+      date: "10 Desember 2024",
+      time: "15:00 WIB",
+      speaker: "Dr. Jennifer Kusuma, Healthcare CTO",
+      viewCount: 2340,
+      status: "recorded",
+      category: "Healthcare"
+    },
+    {
+      title: "Manufacturing Excellence: Quality Control Automation",
+      description: "Session untuk manufacturing industry tentang automasi quality documentation dan supply chain compliance.",
+      duration: "40 menit",
+      date: "28 November 2024",
+      time: "13:00 WIB",
+      speaker: "Budi Rahardjo, Manufacturing Director",
+      viewCount: 1560,
+      status: "recorded",
+      category: "Manufacturing"
+    }
+  ];
+
+  const documentation = [
+    {
+      title: "Getting Started Guide",
+  description: "Panduan quick start untuk setup document processing workflow pertama Anda dengan snapint",
+      category: "Basics",
+      icon: <BookOpen className="w-5 h-5" />,
+      estimatedTime: "15 menit"
+    },
+    {
+      title: "API Reference Documentation",
+      description: "Complete API documentation dengan examples dan code samples untuk semua programming languages",
+      category: "Technical",
+      icon: <Code className="w-5 h-5" />,
+      estimatedTime: "30 menit"
+    },
+    {
+      title: "Integration Tutorials",
+      description: "Step-by-step tutorials untuk popular integrations dan use cases dengan sistem enterprise",
+      category: "Tutorials",
+      icon: <Video className="w-5 h-5" />,
+      estimatedTime: "45 menit"
+    },
+    {
+      title: "SDK Documentation",
+  description: "Comprehensive guides untuk menggunakan snapint SDKs dalam Python, Node.js, Java, dan .NET",
+      category: "Development",
+      icon: <Code className="w-5 h-5" />,
+      estimatedTime: "60 menit"
+    },
+    {
+      title: "Best Practices Guide",
+      description: "Optimization tips dan recommended patterns untuk production deployments dan scaling",
+      category: "Advanced",
+      icon: <Lightbulb className="w-5 h-5" />,
+      estimatedTime: "25 menit"
+    },
+    {
+      title: "Troubleshooting Guide",
+      description: "Common issues, error codes, dan solutions untuk development dan production environments",
+      category: "Support",
+      icon: <HelpCircle className="w-5 h-5" />,
+      estimatedTime: "20 menit"
+    }
+  ];
+
+  const values = [
+    {
+      title: "Inovasi Berkelanjutan",
+      description: "Kami mendorong batas-batas kemungkinan dengan teknologi AI dan pemrosesan dokumen terdepan.",
+      icon: <Target className="w-6 h-6" />
+    },
+    {
+      title: "Kesuksesan Pelanggan",
+      description: "Kesuksesan Anda mendorong inovasi kami. Kami berkomitmen untuk memberikan nilai bisnis yang terukur.",
+      icon: <Users className="w-6 h-6" />
+    },
+    {
+      title: "Keamanan & Kepercayaan",
+      description: "Kami menjaga standar keamanan dan privasi tertinggi dalam segala hal yang kami bangun.",
+      icon: <Award className="w-6 h-6" />
+    },
+    {
+      title: "Transparansi",
+      description: "Kami percaya pada komunikasi yang jelas, hubungan yang jujur, dan praktik bisnis yang transparan.",
+      icon: <Eye className="w-6 h-6" />
+    }
+  ];
+
+  const newsItems = [
+    {
+  title: "snapint Raih Pendanaan Series A Sebesar $25 Juta",
+      date: "15 Desember 2024",
+      category: "Funding",
+      excerpt: "Pendanaan ini akan digunakan untuk mempercepat pengembangan produk dan ekspansi global ke pasar Asia Tenggara."
+    },
+    {
+      title: "Kemitraan Strategis dengan Microsoft Azure Indonesia",
+      date: "28 November 2024",
+      category: "Partnership",
+      excerpt: "Kolaborasi untuk menyediakan solusi AI document processing yang lebih scalable untuk enterprise Indonesia."
+    },
+    {
+  title: "snapint Terpilih sebagai 'Rising Tech Company of the Year'",
+      date: "10 November 2024",
+      category: "Award",
+      excerpt: "Penghargaan dari Indonesia Tech Awards 2024 atas kontribusi dalam transformasi digital Indonesia."
+    },
+    {
+      title: "Peluncuran Fitur Multi-Language Support untuk 40+ Bahasa",
+      date: "22 Oktober 2024",
+      category: "Product Update",
+      excerpt: "Ekspansi capabilities untuk mendukung document processing dalam bahasa regional Indonesia dan Asia."
+    }
+  ];
+
+  const careers = [
+    {
+      title: "Senior Machine Learning Engineer",
+      department: "Engineering",
+      location: "Jakarta / Remote",
+      type: "Full-time",
+      experience: "5+ tahun"
+    },
+    {
+      title: "Product Manager - Enterprise Solutions",
+      department: "Product",
+      location: "Jakarta / Hybrid",
+      type: "Full-time",
+      experience: "4+ tahun"
+    },
+    {
+      title: "Solutions Architect",
+      department: "Customer Success",
+      location: "Jakarta / Remote",
+      type: "Full-time",
+      experience: "6+ tahun"
+    },
+    {
+      title: "DevOps Engineer",
+      department: "Engineering",
+      location: "Remote",
+      type: "Full-time",
+      experience: "3+ tahun"
+    },
+    {
+      title: "Business Development Manager",
+      department: "Sales",
+      location: "Jakarta",
+      type: "Full-time",
+      experience: "5+ tahun"
+    },
+    {
+      title: "Customer Success Manager",
+      department: "Customer Success",
+      location: "Jakarta / Hybrid",
+      type: "Full-time",
+      experience: "3+ tahun"
+    }
+  ];
+
+  const benefits = [
+    "Gaji kompetitif dengan equity options",
+    "Asuransi kesehatan premium untuk keluarga",
+    "Flexible working arrangements (WFH/Hybrid)",
+    "Learning & development budget Rp 20 juta/tahun",
+    "Mental health support & wellness programs",
+    "Unlimited vacation policy",
+    "Latest tech equipment & home office setup",
+    "Team events & company retreats"
+  ];
+
+  return (
+    <>
+      <section className="relative bg-gray-50 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
+          <div className="text-center">
+            {/* Announcement Badge */}
+            <div className="inline-flex items-center mb-12 px-6 py-3 text-sm bg-blue-50 text-gray-700 rounded-lg">
+              <Star className="w-4 h-4 mr-2 font-bold" />
+              <span className="font-semibold">Teknologi AI Terdepan untuk Pemrosesan Dokumen Tanpa Template</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+              Ubah Setiap Dokumen Menjadi{' '}
+              <span className="text-primary-800 relative">
+                Data Terstruktur
+                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary-800/30 to-transparent rounded-full"></div>
+              </span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-xl text-gray-600 max-w-5xl mx-auto mb-16 leading-relaxed">
+              Platform AI-driven IDP (Intelligent Document Processing) yang mengekstrak,
+              memvalidasi, dan menyalurkan data dari dokumen tidak terstruktur, tanpa template
+              untuk dokumen general dan tanpa rekayasa aturan, ke berbagai sistem bisnis dalam
+              hitungan detik.
+            </p>
+
+            {/* Key Metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-5xl mx-auto">
+              <div className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer min-h-[160px] border border-gray-100">
+                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Target className="w-12 h-12 text-primary-800 group-hover:text-primary-900 transition-colors duration-300" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary-800 transition-colors duration-300">99.8%</div>
+                <div className="text-sm text-gray-600 text-center group-hover:text-gray-800 transition-colors duration-300">Tingkat Akurasi</div>
+              </div>
+              <div className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer min-h-[160px] border border-gray-100">
+                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Clock className="w-12 h-12 text-primary-800 group-hover:text-primary-900 transition-colors duration-300" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary-800 transition-colors duration-300">&lt; 30s</div>
+                <div className="text-sm text-gray-600 text-center group-hover:text-gray-800 transition-colors duration-300">Waktu Proses</div>
+              </div>
+              <div className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer min-h-[160px] border border-gray-100">
+                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="w-12 h-12 text-primary-800 group-hover:text-primary-900 transition-colors duration-300" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary-800 transition-colors duration-300">85%</div>
+                <div className="text-sm text-gray-600 text-center group-hover:text-gray-800 transition-colors duration-300">Pengurangan Biaya</div>
+              </div>
+              <div className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer min-h-[160px] border border-gray-100">
+                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="w-12 h-12 text-primary-800 group-hover:text-primary-900 transition-colors duration-300" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary-800 transition-colors duration-300">ISO 27001</div>
+                <div className="text-sm text-gray-600 text-center group-hover:text-gray-800 transition-colors duration-300">Sertifikasi</div>
+              </div>
+            </div>
+
+            {/* Feature Pills */}
+            <div className="flex flex-wrap justify-center items-center gap-4 mb-16">
+              <div className="flex items-center bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200/70 transition-colors duration-300 cursor-pointer">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Tanpa Template
+              </div>
+              <div className="flex items-center bg-primary-100 text-primary-800 px-6 py-3 rounded-full hover:bg-primary-200/70 transition-colors duration-300 cursor-pointer">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                AI Pembelajaran Mandiri
+              </div>
+              <div className="flex items-center bg-purple-100 text-purple-800 px-6 py-3 rounded-full hover:bg-purple-200/70 transition-colors duration-300 cursor-pointer">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Deteksi Tabel Cerdas
+              </div>
+              <div className="flex items-center bg-orange-100 text-orange-800 px-6 py-3 rounded-full hover:bg-orange-200/70 transition-colors duration-300 cursor-pointer">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Output JSON Siap Pakai
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <button
+                className="px-8 py-3 text-lg bg-primary-800 hover:bg-primary-900 text-white rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center shadow-lg"
+                onClick={handleGetStartedClick}
+              >
+                Mulai Uji Coba Gratis
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
+              <button
+                className="px-8 py-3 text-lg bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-semibold transition-colors duration-200"
+                onClick={handleDemoClick}
+              >
+                Jadwalkan Demo
+              </button>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-600 mb-8">
+              <div className="flex items-center">
+                <Shield className="w-5 h-5 mr-2 text-green-600" />
+                Sertifikasi ISO 27001
+              </div>
+              <div className="flex items-center">
+                <Globe className="w-5 h-5 mr-2 text-primary-600" />
+                Kepatuhan GDPR
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="w-5 h-5 mr-2 text-purple-600" />
+                SLA 99.9% Uptime
+              </div>
+            </div>
+
+            {/* Social Proof */}
+            <p className="text-sm text-gray-600 mb-16">
+              Dipercaya 500+ perusahaan di seluruh dunia • Memproses 50 juta+ dokumen per bulan
+            </p>
+          </div>
+
+          {/* How It Works Demo */}
+          <div className="relative">
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-12 mx-auto max-w-6xl">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold mb-4">Lihat Cara Kerjanya</h3>
+                <p className="text-gray-600 text-lg">Dari dokumen kompleks menjadi JSON terstruktur dalam hitungan detik</p>
+              </div>
+
+              <div className="bg-gray-50 rounded-2xl p-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                  {/* Input */}
+                  <div className="text-center space-y-6">
+                    <div className="w-24 h-24 bg-red-100 rounded-3xl flex items-center justify-center mx-auto">
+                      <span className="text-red-700 font-bold text-xl">PDF</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-xl mb-3">Upload Dokumen Apapun</h4>
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        PDF, gambar, formulir hasil scan, dokumen tulisan tangan, tabel kompleks, invoice, kontrak
+                      </p>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div>✓ Support multi-halaman</div>
+                      <div>✓ Pengenalan tulisan tangan</div>
+                      <div>✓ Deteksi tabel otomatis</div>
+                    </div>
+                  </div>
+
+                  {/* Processing */}
+                  <div className="flex flex-col items-center space-y-6">
+                    <div className="relative flex items-center justify-center">
+                      <ArrowRight className="w-12 h-12 text-primary-800 animate-pulse z-10" />
+                      <div className="absolute inset-0 w-20 h-20 -top-4 -left-4 border-2 border-dashed border-primary-800/30 rounded-full animate-spin"
+                        style={{ animationDuration: '3s' }}></div>
+                    </div>
+                    <div className="text-center">
+                      <h4 className="font-semibold text-primary-800 mb-2">Pemrosesan AI</h4>
+                      <p className="text-sm text-gray-600">
+                        Algoritma ML canggih mengekstrak dan menyusun data secara otomatis
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Output */}
+                  <div className="text-center space-y-6">
+                    <div className="w-24 h-24 bg-green-100 rounded-3xl flex items-center justify-center mx-auto">
+                      <span className="text-green-700 font-bold text-xl">JSON</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-xl mb-3">Data Terstruktur Siap Pakai</h4>
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        JSON bersih dan tervalidasi, siap untuk ERP, CRM, atau sistem bisnis apa pun
+                      </p>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div>✓ Format siap API</div>
+                      <div>✓ Skor kepercayaan</div>
+                      <div>✓ Validasi field otomatis</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Section */}
+      <section id="platform" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center mb-12 px-6 py-3 text-sm bg-blue-50 text-gray-700 rounded-lg">
+              <Cpu className="w-4 h-4 mr-2 font-bold" />
+              <span className="font-semibold">AI Platform Terdepan</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Platform Pemrosesan Dokumen Paling Canggih di Indonesia
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Dibangun dengan teknologi AI terdepan dan telah terbukti di lingkungan enterprise, platform kami memberikan akurasi, kecepatan, dan keandalan yang tak tertandingi untuk workflow pemrosesan dokumen paling kritis Anda.
+            </p>
+          </div>
+
+          {/* Platform Features Tabs */}
+          <div className="mb-24">
+            <div className="flex justify-center mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 bg-gray-100 rounded-2xl">
+                {platformFeatures.map((feature) => (
+                  <button
+                    key={feature.id}
+                    onClick={() => setActiveTab(feature.id)}
+                    className={`flex flex-col items-center space-y-2 text-xs p-4 rounded-xl transition-all duration-300 ${activeTab === feature.id
+                      ? 'bg-white text-primary-800 shadow-md'
+                      : 'text-gray-600 hover:text-primary-800'
+                      }`}
+                  >
+                    <div className={`w-8 h-8 ${activeTab === feature.id ? 'text-primary-800' : 'text-gray-500'}`}>
+                      {feature.icon}
+                    </div>
+                    <span className="text-center font-medium">{feature.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {platformFeatures.map((feature) => (
+              <div
+                key={feature.id}
+                className={`${activeTab === feature.id ? 'block' : 'hidden'}`}
+              >
+                <div className="p-8 border-2 border-gray-200 rounded-3xl hover:border-primary-300 transition-colors duration-300 bg-white shadow-lg">
+                  <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
+                    {/* Feature Overview */}
+                    <div className="xl:col-span-2 space-y-8">
+                      <div>
+                        <div className="flex items-center space-x-4 mb-6">
+                          <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-primary-800">
+                            {feature.icon}
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-semibold text-gray-900">{feature.title}</h3>
+                            <p className="text-gray-600">{feature.description}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold mb-4 text-gray-900">Fitur Utama:</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {feature.features.map((item, idx) => (
+                            <div key={idx} className="flex items-start space-x-3">
+                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm text-gray-700">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Capabilities Sidebar */}
+                    <div className="xl:col-span-1">
+                      <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8">
+                        <h4 className="font-semibold mb-6 text-gray-900">Key Metrics:</h4>
+                        <div className="space-y-6">
+                          {feature.capabilities.map((cap, idx) => (
+                            <div key={idx} className="text-center">
+                              <div className="text-2xl font-bold text-primary-800 mb-1">{cap.value}</div>
+                              <div className="text-sm text-gray-600">{cap.name}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Deployment Options */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Pilihan Deployment Fleksibel
+            </h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {deploymentOptions.map((option, index) => (
+                <div key={index} className="relative hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-primary-300 overflow-hidden group bg-white rounded-2xl">
+                  {option.highlight && (
+                    <div className="absolute top-0 left-0 right-0">
+                      <div className="bg-gradient-to-r from-primary-800 to-primary-600 text-white text-center py-2 text-sm font-medium">
+                        {option.highlight}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={`${option.highlight ? 'pt-16' : 'pt-8'} pb-6 px-6`}>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-primary-800 group-hover:scale-110 transition-transform duration-300">
+                        {option.icon}
+                      </div>
+                      <span className="px-3 py-1 text-xs border border-primary-200 text-primary-800 rounded-full bg-primary-50">{option.pricing}</span>
+                    </div>
+
+                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-primary-800 transition-colors mb-2">
+                      {option.title}
+                    </h4>
+                    <p className="text-primary-800 font-medium mb-3">
+                      {option.subtitle}
+                    </p>
+                    <p className="text-gray-600 text-base mb-6">
+                      {option.description}
+                    </p>
+                  </div>
+
+                  <div className="px-6 pb-8 space-y-6">
+                    <ul className="space-y-3">
+                      {option.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start text-sm">
+                          <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="pt-4 border-t border-gray-200">
+                      <p className="text-sm font-medium text-gray-700 mb-2">Cocok untuk:</p>
+                      <p className="text-sm text-gray-600">{option.bestFor}</p>
+                    </div>
+
+                    <button className="w-full bg-primary-800 hover:bg-primary-900 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
+                      Pelajari Lebih Lanjut
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Integration Ecosystem */}
+          <div className="mb-20">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Ekosistem Integrasi Lengkap
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {integrations.map((category, index) => (
+                <div key={index} className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:border-primary-300 hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-800 group-hover:scale-110 group-hover:bg-primary-200 transition-all duration-300">
+                      {category.icon}
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-primary-800 transition-colors duration-300">{category.category}</h4>
+                  </div>
+
+                  <div className="space-y-3">
+                    {category.systems.map((system, systemIndex) => (
+                      <div key={systemIndex} className="flex items-center p-3 bg-gray-50 rounded-lg group-hover:bg-primary-50 group-hover:shadow-sm transition-all duration-300">
+                        <div className="w-8 h-8 bg-primary-100 rounded flex items-center justify-center mr-3 group-hover:bg-primary-200 group-hover:scale-105 transition-all duration-300">
+                          <Settings className="w-4 h-4 text-primary-800" />
+                        </div>
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-primary-900 transition-colors duration-300">{system}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-gradient-to-r from-primary-50 to-primary-100 rounded-3xl p-16">
+            <Scan className="w-16 h-16 text-primary-800 mx-auto mb-6" />
+            <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+              Siap Mulai Transformasi Digital?
+            </h3>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+              Bergabunglah dengan ribuan perusahaan yang telah mempercayakan pemrosesan dokumen mereka kepada platform AI kami
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button
+                className="px-10 py-3 text-lg bg-primary-800 hover:bg-primary-900 text-white rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center shadow-lg"
+                onClick={handleDemoClick}
+              >
+                Jadwalkan Demo
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+              <button
+                className="px-10 py-3 text-lg border-2 border-primary-800 text-primary-800 bg-white hover:bg-primary-50 rounded-lg font-semibold transition-colors duration-200"
+                onClick={handleGetStartedClick}
+              >
+                Mulai Uji Coba Gratis
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Section */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center mb-6 px-4 py-2 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
+              <Target className="w-4 h-4 mr-2" />
+              Solusi Enterprise
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Solusi yang Memberikan Dampak Bisnis Terukur
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Transformasi proses dokumen-intensif paling kritis Anda dengan automasi berbasis AI yang memberikan ROI terbukti, compliance yang enhanced, dan pengalaman pengguna yang exceptional di seluruh industri dan use case.
+            </p>
+          </div>
+
+          {/* Main Use Cases */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Use Case Utama yang Proven
+            </h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Customer Onboarding */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2 transition-all duration-500 group">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-2xl"></div>
+
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300 mb-6 mx-auto">
+                    <Users className="w-12 h-12" />
+                  </div>
+
+                  <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-4">
+                    Customer Onboarding
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed">
+                    Otomatisasi dokumen onboarding seperti KTP, NPWP, surat izin usaha dengan validasi cepat dan akurat.
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Features */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Fitur Utama:</h5>
+                    <ul className="space-y-2">
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Verifikasi KTP, NPWP, SIM otomatis
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Validasi surat izin usaha dan dokumen legal
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Deteksi fraud dan dokumen palsu
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Compliance KYC/AML real-time
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4">
+                    <h5 className="font-semibold mb-3 text-sm text-green-700">Impact Metrics:</h5>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">85%</div>
+                        <div className="text-xs text-gray-600">Time Saved</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.5%</div>
+                        <div className="text-xs text-gray-600">Accuracy</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-purple-600">Rp 2.4M</div>
+                        <div className="text-xs text-gray-600">Savings/tahun</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Industries */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Industri Utama:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Perbankan</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Fintech</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Asuransi</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Telekomunikasi</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
+                    Pelajari Lebih Lanjut
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Accounts Payable */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-green-300 hover:-translate-y-2 transition-all duration-500 group">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-600 to-blue-600 rounded-t-2xl"></div>
+
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-blue-100 rounded-3xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform duration-300 mb-6 mx-auto">
+                    <Receipt className="w-12 h-12" />
+                  </div>
+
+                  <h4 className="text-xl font-semibold text-gray-900 group-hover:text-green-600 transition-colors mb-4">
+                    Accounts Payable
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed">
+                    Ekstraksi data invoice dan nota pembayaran, integrasi langsung ke sistem akuntansi dan ERP.
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Features */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Fitur Utama:</h5>
+                    <ul className="space-y-2">
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Ekstraksi data invoice multi-format
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        3-way matching otomatis (PO, Receipt, Invoice)
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Workflow approval cerdas
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Integrasi real-time ke sistem ERP
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4">
+                    <h5 className="font-semibold mb-3 text-sm text-green-700">Impact Metrics:</h5>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">90%</div>
+                        <div className="text-xs text-gray-600">Time Saved</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.8%</div>
+                        <div className="text-xs text-gray-600">Accuracy</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-purple-600">Rp 1.8M</div>
+                        <div className="text-xs text-gray-600">Savings/tahun</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Industries */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Industri Utama:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Manufaktur</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Retail</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Distribusi</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Healthcare</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
+                    Pelajari Lebih Lanjut
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Purchase Order Processing */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-purple-300 hover:-translate-y-2 transition-all duration-500 group">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-t-2xl"></div>
+
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300 mb-6 mx-auto">
+                    <FileText className="w-12 h-12" />
+                  </div>
+
+                  <h4 className="text-xl font-semibold text-gray-900 group-hover:text-purple-600 transition-colors mb-4">
+                    Purchase Order Processing
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed">
+                    Pemrosesan PO secara otomatis dari dokumen fisik atau digital, pengurangan kerja manual dan kesalahan input.
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Features */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Fitur Utama:</h5>
+                    <ul className="space-y-2">
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Pemrosesan PO fisik dan digital
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Validasi data supplier otomatis
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Tracking status real-time
+                      </li>
+                      <li className="text-sm flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        Audit trail lengkap dan compliance
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4">
+                    <h5 className="font-semibold mb-3 text-sm text-green-700">Impact Metrics:</h5>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">75%</div>
+                        <div className="text-xs text-gray-600">Time Saved</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.2%</div>
+                        <div className="text-xs text-gray-600">Accuracy</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-purple-600">Rp 890K</div>
+                        <div className="text-xs text-gray-600">Savings/tahun</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Industries */}
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Industri Utama:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Konstruksi</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Manufaktur</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Pendidikan</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border">Pemerintahan</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center">
+                    Pelajari Lebih Lanjut
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Industry Solutions Grid */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Solusi per Industri
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Banking */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300">
+                    <Building2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      Banking
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Pemrosesan kredit, KYC, dan compliance
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-blue-500 mr-2" />
+                        Loan Origination
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-blue-500 mr-2" />
+                        KYC/AML
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-blue-500 mr-2" />
+                        Financial Statements
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 20-35%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-blue-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Insurance */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-green-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform duration-300">
+                    <CreditCard className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-green-600 transition-colors">
+                      Insurance
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Claims processing dan underwriting
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-green-500 mr-2" />
+                        Claims Processing
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-green-500 mr-2" />
+                        Policy Management
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-green-500 mr-2" />
+                        Fraud Detection
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 25-40%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-green-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-green-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Healthcare */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-red-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 group-hover:scale-110 transition-transform duration-300">
+                    <Heart className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
+                      Healthcare
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Medical records dan patient onboarding
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-red-500 mr-2" />
+                        Patient Records
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-red-500 mr-2" />
+                        Insurance Claims
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-red-500 mr-2" />
+                        Lab Results
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 15-30%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-red-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-red-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Manufacturing */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-orange-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform duration-300">
+                    <Factory className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                      Manufacturing
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Quality control dan supply chain
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-orange-500 mr-2" />
+                        Quality Reports
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-orange-500 mr-2" />
+                        Supplier Docs
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-orange-500 mr-2" />
+                        Compliance
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 20-30%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-orange-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-orange-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Logistics */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-indigo-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform duration-300">
+                    <Truck className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                      Logistics
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Shipping documents dan tracking
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-indigo-500 mr-2" />
+                        Shipping Docs
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-indigo-500 mr-2" />
+                        Customs Forms
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-indigo-500 mr-2" />
+                        Manifest
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 18-28%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-indigo-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-indigo-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Education */}
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-purple-300 transition-all duration-300 cursor-pointer group">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300">
+                    <GraduationCap className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                      Education
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Academic records dan admissions
+                </p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="font-semibold mb-3 text-sm text-gray-900">Use Cases:</h5>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-purple-500 mr-2" />
+                        Student Records
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-purple-500 mr-2" />
+                        Transcripts
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Zap className="w-3 h-3 text-purple-500 mr-2" />
+                        Applications
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-green-600">Hemat 10-25%/tahun</div>
+                    <div className="text-xs text-green-700">Biaya Operasional</div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm text-purple-600 group-hover:underline">Lihat Detail →</span>
+                    <ArrowRight className="w-4 h-4 text-purple-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ROI Calculator Section */}
+          <div className="bg-white rounded-3xl p-12 shadow-xl border border-gray-200 mb-16">
+            <div className="text-center mb-12">
+              <DollarSign className="w-16 h-16 text-green-600 mx-auto mb-6" />
+              <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+                ROI Calculator: Hitung Penghematan Anda
+              </h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Lihat berapa banyak yang bisa Anda hemat dengan mengautomasi workflow pemrosesan dokumen.
+                Pelanggan kami rata-rata melihat ROI dalam 3-6 bulan.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl">
+                <BarChart3 className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-green-600 mb-2">85%</div>
+                <div className="text-sm text-gray-600">Rata-rata Penghematan Waktu</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
+                <DollarSign className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-blue-600 mb-2">20-35%</div>
+                <div className="text-sm text-gray-600">Rata-rata Penghematan Operasional</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl">
+                <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-purple-600 mb-2">4.2x</div>
+                <div className="text-sm text-gray-600">Rata-rata ROI Multiplier</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl">
+                <Clock className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-orange-600 mb-2">4.5</div>
+                <div className="text-sm text-gray-600">Bulan Payback Period</div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button className="px-10 py-4 text-lg bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center">
+                Hitung ROI Anda Sekarang
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-gradient-to-r from-blue-50 to-purple-100 rounded-3xl p-16">
+            <Target className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+            <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+              Siap Melihat Use Case Anda Beraksi?
+            </h3>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+              Jadwalkan demo personal di mana kami akan menunjukkan persis bagaimana snapint
+              dapat mengubah tantangan pemrosesan dokumen spesifik Anda menjadi keunggulan kompetitif.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button
+                className="px-10 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center"
+                onClick={handleDemoClick}
+              >
+                Jadwalkan Demo Teknis
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+              <button
+                className="px-10 py-4 text-lg border-2 border-blue-600 text-blue-600 bg-white hover:bg-blue-50 rounded-lg font-semibold transition-all duration-300"
+                onClick={handleGetStartedClick}
+              >
+                Lihat Semua Studi Kasus
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customers Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center mb-6 px-4 py-2 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+              <Award className="w-4 h-4 mr-2" />
+              Kisah Sukses Pelanggan
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Dipercaya Pemimpin Industri di Seluruh Indonesia
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Dari startup fintech hingga konglomerat multinasional, perusahaan terdepan memilih snapint untuk mentransformasi workflow pemrosesan dokumen mereka dan mencapai keunggulan operasional.
+            </p>
+          </div>
+
+          {/* Success Metrics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24">
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-purple-100 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mx-auto mb-4">
+                <Users className="w-6 h-6" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
+              <div className="font-semibold text-gray-900 mb-1">Perusahaan Indonesia</div>
+              <div className="text-sm text-gray-600">Dipercaya organisasi di seluruh nusantara</div>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-green-50 to-blue-100 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mx-auto mb-4">
+                <BarChart3 className="w-6 h-6" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">50M+</div>
+              <div className="font-semibold text-gray-900 mb-1">Dokumen per Bulan</div>
+              <div className="text-sm text-gray-600">Volume pemrosesan bulanan</div>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mx-auto mb-4">
+                <Target className="w-6 h-6" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">99.8%</div>
+              <div className="font-semibold text-gray-900 mb-1">Rata-rata Akurasi</div>
+              <div className="text-sm text-gray-600">Across semua jenis dokumen</div>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-orange-50 to-red-100 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+              <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 mx-auto mb-4">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">Rp 340M</div>
+              <div className="font-semibold text-gray-900 mb-1">Total Penghematan Pelanggan</div>
+              <div className="text-sm text-gray-600">Penghematan operasional kumulatif</div>
+            </div>
+          </div>
+
+          {/* Featured Testimonials */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Testimoni Pelanggan Unggulan
+            </h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Testimonial 1 - Banking */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-blue-300 transition-all duration-500 group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+
+                <div className="mb-6">
+                  <div className="flex items-start justify-between mb-6">
+                    <Quote className="w-12 h-12 text-blue-200" />
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current text-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-700 italic leading-relaxed mb-6">
+                    "snapint mengubah seluruh proses originasi kredit kami. Yang dulu membutuhkan 14 hari, sekarang selesai dalam 2 hari dengan akurasi 99.8%. ROI terlihat jelas dalam kuartal pertama, dan nasabah kami menyukai layanan yang lebih cepat."
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                      SW
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Sarah Wijaya</p>
+                      <p className="text-sm text-gray-600">Chief Digital Officer</p>
+                      <p className="text-sm font-medium text-blue-600">Bank Nasional Indonesia</p>
+                    </div>
+                  </div>
+
+                  {/* Key Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+                    <h5 className="font-semibold mb-4 text-sm text-green-700">Hasil Utama:</h5>
+                    <div className="grid grid-cols-2 gap-4 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">85%</div>
+                        <div className="text-xs text-gray-600">Waktu Terhemat</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.8%</div>
+                        <div className="text-xs text-gray-600">Akurasi</div>
+                      </div>
+                      <div className="col-span-2">
+                        <div className="text-lg font-bold text-purple-600">Rp 61M/tahun</div>
+                        <div className="text-xs text-gray-600">Penghematan Biaya</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Implementation */}
+                  <div className="text-sm text-gray-600 flex items-center">
+                    <Clock className="w-4 h-4 mr-2 text-gray-400" />
+                    Implementasi: 6 minggu
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 2 - Healthcare */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-green-300 transition-all duration-500 group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-600 to-blue-600"></div>
+
+                <div className="mb-6">
+                  <div className="flex items-start justify-between mb-6">
+                    <Quote className="w-12 h-12 text-green-200" />
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current text-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-700 italic leading-relaxed mb-6">
+                    "Kemampuan platform menangani formulir medis kompleks sambil mempertahankan compliance HIPAA telah merevolusi proses intake pasien kami. Kami mengurangi overhead administratif 60% sambil meningkatkan skor kepuasan pasien secara signifikan."
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                      MS
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Dr. Michael Santoso</p>
+                      <p className="text-sm text-gray-600">Chief Medical Officer</p>
+                      <p className="text-sm font-medium text-green-600">RS Siloam Hospitals</p>
+                    </div>
+                  </div>
+
+                  {/* Key Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+                    <h5 className="font-semibold mb-4 text-sm text-green-700">Hasil Utama:</h5>
+                    <div className="grid grid-cols-2 gap-4 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">70%</div>
+                        <div className="text-xs text-gray-600">Waktu Terhemat</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.5%</div>
+                        <div className="text-xs text-gray-600">Akurasi</div>
+                      </div>
+                      <div className="col-span-2">
+                        <div className="text-lg font-bold text-purple-600">Rp 45M/tahun</div>
+                        <div className="text-xs text-gray-600">Penghematan Biaya</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Implementation */}
+                  <div className="text-sm text-gray-600 flex items-center">
+                    <Clock className="w-4 h-4 mr-2 text-gray-400" />
+                    Implementasi: 8 minggu
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 3 - Manufacturing */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-purple-300 transition-all duration-500 group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 to-pink-600"></div>
+
+                <div className="mb-6">
+                  <div className="flex items-start justify-between mb-6">
+                    <Quote className="w-12 h-12 text-purple-200" />
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current text-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-700 italic leading-relaxed mb-6">
+                    "Implementasi sangat mudah, dan AI pembelajaran mandiri terus meningkatkan akurasi pemrosesan dokumen kami. Visibilitas supply chain kami meningkat drastis, dan kami mencapai 100% compliance di seluruh operasi global."
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                      JK
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Jennifer Kusuma</p>
+                      <p className="text-sm text-gray-600">VP Operations</p>
+                      <p className="text-sm font-medium text-purple-600">PT Astra International</p>
+                    </div>
+                  </div>
+
+                  {/* Key Metrics */}
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+                    <h5 className="font-semibold mb-4 text-sm text-green-700">Hasil Utama:</h5>
+                    <div className="grid grid-cols-2 gap-4 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-green-600">90%</div>
+                        <div className="text-xs text-gray-600">Waktu Terhemat</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-blue-600">99.9%</div>
+                        <div className="text-xs text-gray-600">Akurasi</div>
+                      </div>
+                      <div className="col-span-2">
+                        <div className="text-lg font-bold text-purple-600">Rp 41M/tahun</div>
+                        <div className="text-xs text-gray-600">Penghematan Biaya</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Implementation */}
+                  <div className="text-sm text-gray-600 flex items-center">
+                    <Clock className="w-4 h-4 mr-2 text-gray-400" />
+                    Implementasi: 4 minggu
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Industry Solutions Detailed */}
+          <div className="mb-20">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Solusi Terbukti per Industri
+            </h3>
+
+            {/* Industry Tabs */}
+            <div className="flex justify-center mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 p-2 bg-gray-100 rounded-2xl">
+                {industryPages.map((industry) => (
+                  <button
+                    key={industry.id}
+                    onClick={() => setIndustryTab(industry.id)}
+                    className={`flex flex-col items-center space-y-2 text-xs p-3 rounded-xl transition-all duration-300 ${industryTab === industry.id
+                      ? 'bg-white text-blue-600 shadow-md'
+                      : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                  >
+                    <div className={`w-8 h-8 ${industryTab === industry.id ? 'text-blue-600' : 'text-gray-500'}`}>
+                      {industry.icon}
+                    </div>
+                    <span className="text-center font-medium">{industry.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Industry Content */}
+            {industryPages.map((industry) => (
+              <div
+                key={industry.id}
+                className={`${industryTab === industry.id ? 'block' : 'hidden'}`}
+              >
+                <div className="bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-blue-300 transition-colors duration-300 shadow-lg">
+                  <div className="space-y-12">
+                    {/* Industry Header */}
+                    <div className="text-center">
+                      <div className="flex items-center justify-center space-x-4 mb-6">
+                        <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
+                          {industry.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-3xl font-semibold text-gray-900">{industry.name}</h4>
+                          <p className="text-gray-600 text-lg">{industry.description}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Real Use Cases */}
+                    <div>
+                      <h5 className="text-2xl font-semibold mb-8 text-center text-gray-900">Use Case Nyata</h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {industry.realUseCases.map((useCase, idx) => (
+                          <div key={idx} className="bg-gradient-to-br from-blue-50 to-purple-50 border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                            <h6 className="font-semibold text-lg mb-4 text-blue-600">{useCase.title}</h6>
+                            <div className="space-y-4">
+                              <div>
+                                <span className="font-medium text-red-600">Tantangan: </span>
+                                <span className="text-sm text-gray-700">{useCase.problem}</span>
+                              </div>
+                              <div>
+                                <span className="font-medium text-blue-600">Solusi: </span>
+                                <span className="text-sm text-gray-700">{useCase.solution}</span>
+                              </div>
+                              <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                                <span className="font-medium text-green-700">Hasil: </span>
+                                <span className="text-sm text-green-800">{useCase.result}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Main Benefits */}
+                    <div>
+                      <h5 className="text-2xl font-semibold mb-8 text-center text-gray-900">Manfaat Utama untuk {industry.name}</h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {industry.mainBenefits.map((benefit, idx) => (
+                          <div key={idx} className="flex items-start p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-gray-200">
+                            <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                            <span className="font-medium text-gray-800">{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Implementation Case Study */}
+                    <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-2xl p-8 border border-blue-200">
+                      <h5 className="text-2xl font-semibold mb-6 text-center text-gray-900">Studi Kasus Implementasi</h5>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                          <h6 className="font-semibold text-lg mb-4 text-gray-900">Profil Klien</h6>
+                          <p className="text-gray-700 mb-4 font-medium">{industry.implementationCase.client}</p>
+                          <p className="text-sm text-gray-600 mb-4">
+                            <strong>Tantangan:</strong> {industry.implementationCase.challenge}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <strong>Waktu Implementasi:</strong> {industry.implementationCase.timeframe}
+                          </p>
+                        </div>
+                        <div>
+                          <h6 className="font-semibold text-lg mb-4 text-gray-900">Hasil Terukur</h6>
+                          <ul className="space-y-3">
+                            {industry.implementationCase.results.map((result, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <BarChart3 className="w-4 h-4 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                                <span className="text-sm font-medium text-gray-700">{result}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-gradient-to-r from-blue-50 to-purple-100 rounded-3xl p-16">
+            <Globe className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+            <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+              Bergabung dengan 500+ Perusahaan yang Mentransformasi Operasi Mereka
+            </h3>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+              Lihat bagaimana organisasi Anda dapat mencapai hasil serupa dengan platform pemrosesan
+              dokumen berbasis AI kami. Jadwalkan demo personal untuk mengeksplorasi use case spesifik Anda.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button
+                className="px-10 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center"
+                onClick={handleDemoClick}
+              >
+                Jadwalkan Demo Teknis
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+              <button
+                className="px-10 py-4 text-lg border-2 border-blue-600 text-blue-600 bg-white hover:bg-blue-50 rounded-lg font-semibold transition-all duration-300"
+                onClick={handleGetStartedClick}
+              >
+                Lihat Success Stories
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              <Network className="w-4 h-4 mr-2" />
+              Ekosistem Partner
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Bangun Masa Depan Bersama
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Bergabunglah dengan ekosistem partner snapint dan bangun solusi AI document processing
+              terdepan untuk customer di seluruh Indonesia dan Asia.
+            </p>
+          </div>
+
+          {/* Partnership Opportunities */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Peluang Kemitraan
+            </h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {partnershipOpportunities.map((opportunity, index) => (
+                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-300">
+                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+                    {opportunity.icon}
+                  </div>
+                  <h4 className="text-xl font-semibold mb-4 text-gray-900">{opportunity.title}</h4>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {opportunity.description}
+                  </p>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h5 className="font-semibold mb-3 text-gray-900">Peluang Kolaborasi:</h5>
+                      <ul className="space-y-2">
+                        {opportunity.opportunities.map((item, idx) => (
+                          <li key={idx} className="text-sm flex items-start text-gray-700">
+                            <Zap className="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h5 className="font-semibold mb-3 text-gray-900">Manfaat Partner:</h5>
+                      <ul className="space-y-2">
+                        {opportunity.benefits.map((benefit, idx) => (
+                          <li key={idx} className="text-sm flex items-start text-gray-700">
+                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-4 border-t border-gray-200">
+                      <p className="text-sm text-gray-600">
+                        <strong>Ideal untuk:</strong> {opportunity.ideal}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Partner Benefits */}
+          <div className="mb-24">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Manfaat Menjadi Mitra
+            </h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {partnerBenefits.map((category, index) => (
+                <div key={index}>
+                  <h4 className="text-xl font-semibold mb-8 text-center text-gray-900">{category.category}</h4>
+                  <div className="space-y-6">
+                    {category.benefits.map((benefit, idx) => (
+                      <div key={idx} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                            {benefit.icon}
+                          </div>
+                          <div>
+                            <h5 className="font-semibold mb-2 text-gray-900">{benefit.title}</h5>
+                            <p className="text-sm text-gray-600">{benefit.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Partner Types */}
+          <div className="mb-20">
+            <h3 className="text-3xl font-semibold text-center mb-16 text-gray-900">
+              Jenis Mitra
+            </h3>
+
+            {/* Partner Type Tabs */}
+            <div className="flex justify-center mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 p-2 bg-gray-100 rounded-2xl">
+                {partnerTypes.map((partner, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setPartnerTab(partner.type.toLowerCase().split(' ')[0])}
+                    className={`px-6 py-3 rounded-xl transition-all duration-300 text-sm font-medium ${partnerTab === partner.type.toLowerCase().split(' ')[0]
+                      ? 'bg-white text-blue-600 shadow-md'
+                      : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                  >
+                    {partner.type}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Partner Type Content */}
+            {partnerTypes.map((partner, index) => (
+              <div
+                key={index}
+                className={`${partnerTab === partner.type.toLowerCase().split(' ')[0] ? 'block' : 'hidden'}`}
+              >
+                <div className="bg-white rounded-3xl p-10 shadow-xl">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+                    {/* Left Column */}
+                    <div className="space-y-8">
+                      <div>
+                        <h4 className="text-2xl font-semibold mb-4 text-gray-900">{partner.type}</h4>
+                        <p className="text-lg text-gray-600">{partner.description}</p>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold mb-4 flex items-center text-gray-900">
+                          <Target className="w-5 h-5 mr-2 text-blue-600" />
+                          Requirements
+                        </h5>
+                        <ul className="space-y-3">
+                          {partner.requirements.map((req, idx) => (
+                            <li key={idx} className="flex items-start">
+                              <CheckCircle className="w-4 h-4 text-blue-500 mr-3 mt-1 flex-shrink-0" />
+                              <span className="text-sm text-gray-700">{req}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold mb-4 flex items-center text-gray-900">
+                          <Star className="w-5 h-5 mr-2 text-green-500" />
+                          Key Benefits
+                        </h5>
+                        <ul className="space-y-3">
+                          {partner.benefits.map((benefit, idx) => (
+                            <li key={idx} className="flex items-start">
+                              <TrendingUp className="w-4 h-4 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                              <span className="text-sm text-gray-700">{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Right Column */}
+                    <div className="space-y-8">
+                      <div>
+                        <h5 className="font-semibold mb-4 text-gray-900">Contoh Partner:</h5>
+                        <div className="grid grid-cols-2 gap-3">
+                          {partner.examples.map((example, idx) => (
+                            <div key={idx} className="p-3 bg-blue-50 rounded-lg text-center border border-blue-200">
+                              <span className="text-sm font-medium text-gray-800">{example}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
+                        <h5 className="font-semibold mb-4 text-gray-900">Application Process:</h5>
+                        <div className="space-y-4">
+                          {partner.applicationProcess.map((step, idx) => (
+                            <div key={idx} className="flex items-start">
+                              <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">
+                                {idx + 1}
+                              </div>
+                              <span className="text-sm text-gray-700">{step}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <button className="w-full bg-blue-600 text-white px-6 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
+                        Apply as {partner.type}
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-white rounded-3xl p-16 shadow-xl">
+            <Handshake className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+            <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+              Siap Membangun Masa Depan Bersama?
+            </h3>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+              Bergabunglah dengan ecosystem partner snapint dan bangun solusi AI document processing
+              terdepan untuk customer di seluruh Indonesia dan Asia.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button className="bg-blue-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
+                Daftar sebagai Partner
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+              <button className="border-2 border-blue-600 text-blue-600 px-10 py-4 rounded-xl text-lg font-semibold hover:bg-blue-50 transition-colors duration-300">
+                Download Partner Kit
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center mb-6 px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Knowledge Hub
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Resources & Learning Hub
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Dapatkan insights, panduan implementasi, dan best practices untuk memaksimalkan ROI
+              dari initiative document processing automation di organisasi Anda.
+            </p>
+          </div>
+
+          {/* Resource Tabs */}
+          <div className="mb-16">
+            <div className="flex justify-center mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 bg-gray-100 rounded-2xl">
+                {[
+                  { id: 'blog', label: 'Blog', icon: <FileText className="w-4 h-4" /> },
+                  { id: 'case-studies', label: 'Studi Kasus', icon: <TrendingUp className="w-4 h-4" /> },
+                  { id: 'whitepapers', label: 'Whitepaper', icon: <Download className="w-4 h-4" /> },
+                  { id: 'webinars', label: 'Webinar', icon: <Video className="w-4 h-4" /> }
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setResourceTab(tab.id)}
+                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl transition-all duration-300 ${resourceTab === tab.id
+                      ? 'bg-white text-blue-600 shadow-md'
+                      : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                  >
+                    {tab.icon}
+                    <span className="font-medium">{tab.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Blog Content */}
+            <div className={`${resourceTab === 'blog' ? 'block' : 'hidden'}`}>
+              <div className="space-y-8">
+                {/* Featured Post */}
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-3xl p-8 hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex flex-col lg:flex-row">
+                    <div className="lg:w-1/3 bg-gradient-to-br from-blue-100 to-purple-100 p-8 rounded-2xl flex items-center justify-center">
+                      <TrendingUp className="w-16 h-16 text-blue-600" />
+                    </div>
+                    <div className="lg:w-2/3 lg:pl-8 mt-6 lg:mt-0">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <span className="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-semibold">Featured</span>
+                        <span className="border border-blue-600 text-blue-600 px-3 py-1 rounded-lg text-sm">{blogPosts[0].category}</span>
+                      </div>
+                      <h3 className="text-2xl font-semibold mb-3 text-gray-900 hover:text-blue-600 transition-colors cursor-pointer">
+                        {blogPosts[0].title}
+                      </h3>
+                      <p className="text-gray-600 mb-6">{blogPosts[0].excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-6 text-sm text-gray-500">
+                          <span className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            {blogPosts[0].date}
+                          </span>
+                          <span className="flex items-center">
+                            <Clock className="w-4 h-4 mr-1" />
+                            {blogPosts[0].readTime}
+                          </span>
+                          <span className="flex items-center">
+                            <Eye className="w-4 h-4 mr-1" />
+                            {blogPosts[0].views}
+                          </span>
+                          <span className="flex items-center">
+                            <MessageSquare className="w-4 h-4 mr-1" />
+                            {blogPosts[0].comments}
+                          </span>
+                        </div>
+                        <button className="text-blue-600 hover:text-blue-800 transition-colors flex items-center">
+                          Baca Selengkapnya
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Other Posts Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {blogPosts.slice(1).map((post, index) => (
+                    <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="border border-gray-300 text-gray-600 px-3 py-1 rounded-lg text-sm">{post.category}</span>
+                        <div className="flex items-center space-x-2 text-xs text-gray-500">
+                          <Eye className="w-3 h-3" />
+                          <span>{post.views}</span>
+                        </div>
+                      </div>
+                      <h4 className="text-lg font-semibold group-hover:text-blue-600 transition-colors mb-3">
+                        {post.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center space-x-4">
+                          <span className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            {post.date}
+                          </span>
+                          <span className="flex items-center">
+                            <Clock className="w-4 h-4 mr-1" />
+                            {post.readTime}
+                          </span>
+                        </div>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Case Studies Content */}
+            <div className={`${resourceTab === 'case-studies' ? 'block' : 'hidden'}`}>
+              <div className="space-y-8">
+                {caseStudies.map((study, index) => (
+                  <div key={index} className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                      {/* Case Study Content */}
+                      <div className="lg:col-span-2 space-y-6">
+                        <div>
+                          <div className="flex items-center space-x-4 mb-4">
+                            <span className="border border-gray-300 text-gray-600 px-3 py-1 rounded-lg text-sm">{study.industry}</span>
+                            <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm">{study.category}</span>
+                            <div className="flex items-center text-sm text-gray-500">
+                              <Download className="w-4 h-4 mr-1" />
+                              {study.downloadCount} downloads
+                            </div>
+                          </div>
+                          <h4 className="text-xl font-semibold group-hover:text-blue-600 transition-colors mb-3">
+                            {study.title}
+                          </h4>
+                          <p className="text-sm text-gray-600 mb-4">{study.company}</p>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="font-semibold text-sm mb-2 text-gray-900">Tantangan:</h5>
+                            <p className="text-sm text-gray-600">{study.challenge}</p>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-sm mb-2 text-gray-900">Solusi:</h5>
+                            <p className="text-sm text-gray-600">{study.solution}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Results Sidebar */}
+                      <div className="lg:col-span-1 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-6">
+                        <h5 className="font-semibold mb-4 flex items-center text-green-700">
+                          <TrendingUp className="w-4 h-4 mr-2" />
+                          Hasil Terukur
+                        </h5>
+                        <ul className="space-y-3 mb-6">
+                          {study.results.map((result, resultIndex) => (
+                            <li key={resultIndex} className="flex items-start text-sm">
+                              <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                              {result}
+                            </li>
+                          ))}
+                        </ul>
+                        <button className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center">
+                          Download Studi Kasus
+                          <Download className="w-4 h-4 ml-2" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Whitepapers Content */}
+            <div className={`${resourceTab === 'whitepapers' ? 'block' : 'hidden'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {whitepapers.map((paper, index) => (
+                  <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                      <Download className="w-6 h-6" />
+                    </div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="border border-gray-300 text-gray-600 px-3 py-1 rounded-lg text-sm">{paper.category}</span>
+                      <div className="flex items-center text-sm text-gray-500">
+                        <Download className="w-4 h-4 mr-1" />
+                        {paper.downloadCount}
+                      </div>
+                    </div>
+                    <h4 className="text-lg font-semibold mb-3 text-gray-900">{paper.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{paper.description}</p>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <span>{paper.pages}</span>
+                        <span>{paper.format}</span>
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        <strong>Bahasa:</strong> {paper.language}
+                      </div>
+                      <button className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center">
+                        Download Gratis
+                        <Download className="w-4 h-4 ml-2" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Webinars Content */}
+            <div className={`${resourceTab === 'webinars' ? 'block' : 'hidden'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {webinars.map((webinar, index) => (
+                  <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`px-3 py-1 rounded-lg text-sm font-semibold ${webinar.status === 'upcoming' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'
+                        }`}>
+                        {webinar.status === 'upcoming' ? 'Upcoming' : 'Recorded'}
+                      </span>
+                      <span className="border border-gray-300 text-gray-600 px-3 py-1 rounded-lg text-sm">{webinar.category}</span>
+                    </div>
+                    <h4 className="text-lg font-semibold mb-3 text-gray-900">{webinar.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{webinar.description}</p>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="text-gray-500">Durasi:</span>
+                          <p className="font-medium text-gray-900">{webinar.duration}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Speaker:</span>
+                          <p className="font-medium text-gray-900">{webinar.speaker}</p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="text-gray-500">Tanggal:</span>
+                          <p className="font-medium text-gray-900">{webinar.date}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Waktu:</span>
+                          <p className="font-medium text-gray-900">{webinar.time}</p>
+                        </div>
+                      </div>
+
+                      {webinar.status === 'upcoming' && (
+                        <div className="text-sm text-gray-500">
+                          <Users className="w-4 h-4 inline mr-1" />
+                          {webinar.registeredCount} terdaftar
+                        </div>
+                      )}
+
+                      {webinar.status === 'recorded' && (
+                        <div className="text-sm text-gray-500">
+                          <Eye className="w-4 h-4 inline mr-1" />
+                          {webinar.viewCount} views
+                        </div>
+                      )}
+
+                      <button className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center">
+                        {webinar.status === 'upcoming' ? (
+                          <>
+                            <Calendar className="w-4 h-4 mr-2" />
+                            Daftar Sekarang
+                          </>
+                        ) : (
+                          <>
+                            <Play className="w-4 h-4 mr-2" />
+                            Tonton Recording
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Documentation Section */}
+          <div className="mb-16">
+            <h3 className="text-3xl font-semibold text-center mb-12 text-gray-900">
+              Dokumentasi Developer
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {documentation.map((doc, index) => (
+                <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                      {doc.icon}
+                    </div>
+                    <span className="border border-gray-300 text-gray-600 px-3 py-1 rounded-lg text-sm">{doc.category}</span>
+                  </div>
+                  <h4 className="text-lg font-semibold group-hover:text-blue-600 transition-colors mb-3">
+                    {doc.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4">{doc.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500 flex items-center">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {doc.estimatedTime}
+                    </span>
+                    <ExternalLink className="w-4 h-4 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-16">
+            <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+              Butuh Support Tambahan?
+            </h3>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+              Tim technical support dan solution architects kami siap membantu Anda
+              mendapatkan hasil maksimal dari capabilities document processing snapint.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button className="bg-blue-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
+                Contact Support
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>
+              <button className="border-2 border-blue-600 text-blue-600 px-10 py-4 rounded-xl text-lg font-semibold bg-white hover:bg-blue-50 transition-colors duration-300">
+                Schedule Consultation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              <Building2 className="w-4 h-4 mr-2" />
+              Tentang snapint
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              Memimpin Masa Depan<br />Document Intelligence
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Kami dalam misi untuk mentransformasi cara organisasi menangani dokumen,
+              membuat pemrosesan berbasis AI dapat diakses, akurat, dan aman untuk
+              bisnis di seluruh Indonesia dan Asia.
+            </p>
+          </div>
+
+          {/* Company Tabs */}
+          <div className="flex justify-center mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 bg-gray-100 rounded-2xl">
+              {['about', 'newsroom', 'careers', 'contact'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setCompanyTab(tab)}
+                  className={`px-6 py-3 rounded-xl transition-all duration-300 text-sm font-medium ${companyTab === tab
+                      ? 'bg-white text-blue-600 shadow-md'
+                      : 'text-gray-600 hover:text-blue-600'
+                    }`}
+                >
+                  {tab === 'about' && 'Tentang Kami'}
+                  {tab === 'newsroom' && 'Newsroom'}
+                  {tab === 'careers' && 'Karier'}
+                  {tab === 'contact' && 'Hubungi Kami'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* About Us Content */}
+          <div className={`${companyTab === 'about' ? 'block' : 'hidden'}`}>
+            <div className="space-y-16">
+              {/* Mission & Vision */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                    <Target className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">Misi Kami</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Mendemokratisasi pemrosesan dokumen cerdas dengan membuat teknologi AI canggih
+                    dapat diakses oleh organisasi dari semua ukuran, memungkinkan mereka untuk
+                    membuka nilai yang terjebak dalam dokumen dan mempercepat transformasi digital.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                    <Eye className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-4 text-gray-900">Visi Kami</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Dunia di mana setiap dokumen dipahami secara instan, diproses, dan diintegrasikan
+                    ke dalam workflow bisnis, menghilangkan entry data manual dan memungkinkan
+                    organisasi fokus pada hal yang paling penting - melayani pelanggan dan mengembangkan bisnis.
+                  </p>
+                </div>
+              </div>
+
+              {/* Company Values */}
+              <div>
+                <h3 className="text-3xl font-semibold text-center mb-12 text-gray-900">Nilai-Nilai Kami</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {values.map((value, index) => (
+                    <div key={index} className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mx-auto mb-4">
+                        {value.icon}
+                      </div>
+                      <h4 className="text-lg font-semibold mb-3 text-gray-900">{value.title}</h4>
+                      <p className="text-gray-600 text-base">
+                        {value.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="bg-white rounded-2xl p-12 shadow-lg">
+                <h3 className="text-2xl font-semibold text-center mb-12 text-gray-900">snapint dalam Angka</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                    <div className="text-sm text-gray-600">Perusahaan Aktif</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">50M+</div>
+                    <div className="text-sm text-gray-600">Dokumen Diproses</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">99.8%</div>
+                    <div className="text-sm text-gray-600">Tingkat Akurasi</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
+                    <div className="text-sm text-gray-600">Industri Dilayani</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Newsroom Content */}
+          <div className={`${companyTab === 'newsroom' ? 'block' : 'hidden'}`}>
+            <div className="space-y-8">
+              <div className="text-center mb-12">
+                <Newspaper className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+                <h3 className="text-3xl font-semibold mb-4 text-gray-900">Newsroom</h3>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Berita terbaru, update perusahaan, dan milestone penting dari snapint
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {newsItems.map((item, index) => (
+                  <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        {item.category}
+                      </span>
+                      <span className="text-sm text-gray-500">{item.date}</span>
+                    </div>
+                    <h4 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-gray-600 text-base mb-4">
+                      {item.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-blue-600 group-hover:underline">Baca selengkapnya</span>
+                      <ArrowRight className="w-4 h-4 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center pt-8">
+                <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-300 flex items-center mx-auto">
+                  Lihat Semua Berita
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Careers Content */}
+          <div className={`${companyTab === 'careers' ? 'block' : 'hidden'}`}>
+            <div className="space-y-12">
+              <div className="text-center">
+                <Coffee className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+                <h3 className="text-3xl font-semibold mb-4 text-gray-900">Bergabung dengan Tim Kami</h3>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Bangun masa depan AI document processing bersama team yang passionate,
+                  innovative, dan committed untuk memberikan impact positif bagi bisnis di Indonesia.
+                </p>
+              </div>
+
+              {/* Benefits */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h4 className="text-xl font-semibold mb-6 text-center text-gray-900">Mengapa Bekerja di snapint?</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-sm text-gray-700">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Open Positions */}
+              <div>
+                <h4 className="text-2xl font-semibold mb-8 text-center text-gray-900">Posisi Terbuka</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {careers.map((job, index) => (
+                    <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h5 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
+                            {job.title}
+                          </h5>
+                          <div className="flex items-center space-x-2 mb-3">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                              {job.department}
+                            </span>
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              {job.type}
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <div className="flex items-center">
+                          <MapPin className="w-4 h-4 mr-2" />
+                          {job.location}
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-2" />
+                          Experience: {job.experience}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-center">
+                <button className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center mx-auto">
+                  Lihat Semua Posisi
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Content */}
+          <div className={`${companyTab === 'contact' ? 'block' : 'hidden'}`}>
+            <div className="bg-white rounded-2xl p-12 shadow-lg">
+              <div className="text-center mb-12">
+                <MessageSquare className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+                <h3 className="text-3xl font-semibold mb-4 text-gray-900">Hubungi Kami</h3>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Siap untuk mentransformasi workflow pemrosesan dokumen Anda? Tim kami siap
+                  membantu Anda memulai dan menjawab pertanyaan yang mungkin Anda miliki.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                {/* Email */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mx-auto mb-4">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-semibold mb-3 text-gray-900">Email Kami</h4>
+                  <div className="space-y-2">
+                    <p className="text-gray-600">
+                      <a href="mailto:sales@snapint.ai" className="hover:text-blue-600 transition-colors">
+                        sales@snapint.ai
+                      </a>
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Tim sales & konsultasi
+                    </p>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mx-auto mb-4">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-semibold mb-3 text-gray-900">Telepon Kami</h4>
+                  <div className="space-y-2">
+                    <p className="text-gray-600">
+                      <a href="tel:+6289739230000" className="hover:text-blue-600 transition-colors">
+                        +62 897 392 3000
+                      </a>
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Senin-Jumat, 09:00-18:00 WIB
+                    </p>
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mx-auto mb-4">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-semibold mb-3 text-gray-900">Kunjungi Kami</h4>
+                  <div className="space-y-2">
+                    <p className="text-gray-600">
+                      Cideng, Jakarta Pusat<br />
+                      Indonesia
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Kantor pusat & R&D center
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
+                    Jadwalkan Demo
+                    <Calendar className="w-5 h-5 ml-2" />
+                  </button>
+                  <button className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-300">
+                    Mulai Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </>
+  );
+}

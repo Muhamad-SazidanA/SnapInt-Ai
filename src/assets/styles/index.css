@@ -1,0 +1,303 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color system using HSL values for Tailwind compatibility */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 210 73% 23%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 210 73% 23%;
+  --chart-1: 210 73% 23%;
+  --chart-2: 142.1 76.2% 36.3%;
+  --chart-3: 47.9 95.8% 53.1%;
+  --chart-4: 27.8 87.8% 67.8%;
+  --chart-5: 340.3 82.2% 62.8%;
+  --radius: 0.5rem;
+  --sidebar-primary: 210 73% 23%;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Enhanced spacing system */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Enhanced typography scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Enhanced line heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Shadow system */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 73% 40%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
+/* Inter Font Local - Format yang benar untuk .ttc */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/FontInter/Inter.ttc') format('truetype-collection');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback untuk browser yang tidak support .ttc */
+@font-face {
+  font-family: 'Inter-fallback';
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+}
+
+/* Tambahkan varian lain jika ada (Medium, SemiBold, dsb) */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', 'Inter-fallback', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    line-height: var(--leading-normal);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced custom scrollbar with new color system */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted) / 0.3);
+    border-radius: var(--radius);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.8), hsl(var(--primary)));
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.9));
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: hsl(var(--muted) / 0.1);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--chart-2)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(24px);
+    background: hsl(var(--background) / 0.05);
+    border: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  .btn-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: calc(var(--radius) * 1.5);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary:hover {
+    background: hsl(var(--primary) / 0.9);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    font-weight: 600;
+    padding: var(--space-3) var(--space-6);
+    border-radius: calc(var(--radius) * 1.5);
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background: hsl(var(--accent));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Card style */
+  .card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: var(--shadow-md);
+    color: hsl(var(--card-foreground));
+  }
+
+  /* Section title */
+  .section-title {
+    color: hsl(var(--primary));
+    font-weight: 700;
+    font-size: var(--text-4xl);
+  }
+
+  /* Subtitle */
+  .section-subtitle {
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-xl);
+    font-weight: 500;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md\:grid-cols-8 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Mobile scrollbar adjustments */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
