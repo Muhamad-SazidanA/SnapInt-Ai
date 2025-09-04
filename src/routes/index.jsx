@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Template from "../layout/Template";
 import Dashboard from "../pages/Dashboard";
-import Loginpage from "../pages/Loginpage";
+
 import AIProcessingPage from "../pages/users/Platform/AIProcessingPage";
 import JSONOutputPage from "../pages/users/Platform/JSONOutputPage";
 import NoTemplatePage from "../pages/users/Platform/NoTemplatePage";
@@ -234,8 +234,5 @@ export const router = createBrowserRouter([
             },
         ],
     },
-    {
-        path: "/login",
-        element: <Loginpage />
-    },
+   
 ]);

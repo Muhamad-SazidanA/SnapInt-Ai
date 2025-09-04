@@ -10,6 +10,7 @@ import {
     CreditCard,
     Factory,
     Truck,
+
     GraduationCap,
     Download,
     ArrowRight,
@@ -26,7 +27,7 @@ export default function CaseStudiesPage() {
     const goGetStarted = () => navigate('/get-started');
 
     return (
-        <div className="pt-[15px] bg-gradient-to-br from-primary/5 to-accent/10 py-24 ">
+        <div className="bg-gradient-to-br from-primary/5 to-accent/10 py-24 ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16">

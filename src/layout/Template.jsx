@@ -5,6 +5,14 @@ import { FaWhatsapp, FaBars, FaTimes, FaChevronDown, FaEnvelope, FaPhone, FaMapM
 export default function Template() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const [mobileOpen, setMobileOpen] = useState({
+        platform: false,
+        solusi: false,
+        pelanggan: false,
+        mitra: false,
+        sumberDaya: false,
+        perusahaan: false,
+    });
 
     const handleNavigation = (url) => {
         window.location.href = url;
@@ -24,6 +32,14 @@ export default function Template() {
         handleNavigation('/');
         setIsMenuOpen(false);
         setActiveDropdown(null);
+    };
+
+    const toggleDropdown = (name) => {
+        setActiveDropdown((prev) => (prev === name ? null : name));
+    };
+
+    const toggleMobile = (key) => {
+        setMobileOpen((prev) => ({ ...prev, [key]: !prev[key] }));
     };
 
     return (
@@ -52,12 +68,11 @@ export default function Template() {
                                 className="flex items-center space-x-2 group cursor-pointer"
                                 onClick={handleLogoClick}
                             >
-                                <div className="w-8 h-8 bg-gradient-to-br from-primary-800 to-primary-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                                    <span className="text-white font-bold text-sm">S</span>
-                                </div>
-                                <span className="text-xl font-bold text-gray-900 group-hover:text-primary-800 transition-colors duration-200">
-                                    snapint
-                                </span>
+                                <img
+                                    src="/images/SnapInt.png"
+                                    alt="SnapInt Logo"
+                                    className="h-6 object-contain group-hover:opacity-90 transition-opacity duration-200"
+                                />
                             </div>
                         </div>
 
@@ -70,14 +85,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#platform')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Platform')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Platform</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Platform' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Platform' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -86,29 +100,28 @@ export default function Template() {
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
                                             onClick={() => handleNavClick('solusi/ai-processing')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Pemrosesan Dokumen AI
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('json-output', '#json-output')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('json-output')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Output API JSON
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('no-template', '#no-template')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('no-template')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Ekstraksi Tanpa Template
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('deployment', '#deployment')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('deployment')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Opsi Implementasi
                                         </button>
-
                                     </div>
                                 )}
                             </div>
@@ -120,14 +133,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#solutions')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Solusi')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Solusi</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Solusi' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Solusi' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -135,26 +147,26 @@ export default function Template() {
                                 {activeDropdown === 'Solusi' && (
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('customer-onboarding', '#customer-onboarding')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('customer-onboarding')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Customer Onboarding
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/accounts-payable', '#accounts-payable')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('solusi/accounts-payable')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Accounts Payable
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/purchase-orders', '#purchase-orders')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('solusi/purchase-orders')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Purchase Order Processing
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/industry-solutions', '#industry-solutions')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('solusi/industry-solutions')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Solusi per Industri
                                         </button>
@@ -169,14 +181,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#customers')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Pelanggan')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Pelanggan</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Pelanggan' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Pelanggan' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -184,38 +195,38 @@ export default function Template() {
                                 {activeDropdown === 'Pelanggan' && (
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('banking', '#banking')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('banking')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Perbankan
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('insurance', '#insurance')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('insurance')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Insurance
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('healthcare', '#healthcare')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('healthcare')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Kesehatan
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('logistics', '#logistics')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('logistics')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Logistik
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('pelanggan/education', '#education')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('pelanggan/education')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Pendidikan
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('pelanggan/manufacturing', '#manufacturing')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('pelanggan/manufacturing')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Manufaktur
                                         </button>
@@ -230,14 +241,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#partners')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Mitra')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Mitra</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Mitra' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Mitra' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -245,20 +255,20 @@ export default function Template() {
                                 {activeDropdown === 'Mitra' && (
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('mitra/partnership-opportunities', '#partnership-opportunities')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('mitra/partnership-opportunities')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Peluang Kemitraan
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('mitra/partner-benefits', '#partner-benefits')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('mitra/partner-benefits')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Keuntungan Partner
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('mitra/partner-types', '#partner-types')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('mitra/partner-types')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Jenis Partner
                                         </button>
@@ -273,14 +283,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#resources')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Sumber Daya')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Sumber Daya</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Sumber Daya' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Sumber Daya' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -288,26 +297,26 @@ export default function Template() {
                                 {activeDropdown === 'Sumber Daya' && (
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('blog', '#blog')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('blog')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Blog
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('case-studies', '#case-studies')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('case-studies')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Studi Kasus
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('whitepapers', '#whitepapers')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('whitepapers')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Whitepaper
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('webinars', '#webinars')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('webinars')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Webinar
                                         </button>
@@ -322,14 +331,13 @@ export default function Template() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <button
-                                    onClick={() => handleNavClick(null, '#company')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                    onClick={() => toggleDropdown('Perusahaan')}
+                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
                                     type="button"
                                 >
                                     <span>Perusahaan</span>
                                     <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Perusahaan' ? 'rotate-180' : ''
-                                            }`}
+                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Perusahaan' ? 'rotate-180' : ''}`}
                                     />
                                 </button>
 
@@ -337,26 +345,26 @@ export default function Template() {
                                 {activeDropdown === 'Perusahaan' && (
                                     <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('about', '#about')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('about')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Tentang Kami
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('newsroom', '#newsroom')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('newsroom')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Newsroom
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('careers', '#careers')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('careers')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Karier
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('contact', '#contact')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2"
+                                            onClick={() => handleNavClick('contact')}
+                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
                                         >
                                             Hubungi Kami
                                         </button>
@@ -369,13 +377,13 @@ export default function Template() {
                         <div className="hidden md:flex items-center space-x-2 justify-self-end whitespace-nowrap">
                             <button
                                 onClick={() => handleNavigation('/demo')}
-                                className="border border-gray-200 bg-white hover:bg-gray-50 text-gray-900 px-4 h-10 rounded-2xl text-sm font-medium transition-colors duration-200 whitespace-nowrap"
+                                className="border border-gray-200 bg-white hover:bg-gray-50 text-gray-900 px-4 h-10 rounded-2xl text-sm font-medium transition-colors duration-200 whitespace-nowrap focus:outline-none"
                             >
                                 Request Demo
                             </button>
                             <button
                                 onClick={() => handleNavigation('/free-trial')}
-                                className="bg-primary-800 hover:bg-primary-900 text-white px-5 h-10 rounded-2xl text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap"
+                                className="bg-primary-800 hover:bg-primary-900 text-white px-5 h-10 rounded-2xl text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap focus:outline-none"
                             >
                                 Get Started
                             </button>
@@ -385,7 +393,7 @@ export default function Template() {
                         <div className="md:hidden flex items-center space-x-2 justify-self-end col-start-3 row-start-1">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="hover:bg-gray-50 text-gray-600 p-2 rounded-lg"
+                                className="hover:bg-gray-50 text-gray-600 p-2 rounded-lg focus:outline-none"
                             >
                                 {isMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
                             </button>
@@ -398,214 +406,226 @@ export default function Template() {
                             <div className="px-2 pt-2 pb-3 space-y-1">
                                 {/* Platform Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#platform')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('platform')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Platform
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('solusi/ai-processing')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Pemrosesan Dokumen AI
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('json-output', '#json-output')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Output API JSON
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('no-template', '#no-template')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Ekstraksi Tanpa Template
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('deployment', '#deployment')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Opsi Implementasi
-                                    </button>
+                                {mobileOpen.platform && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('solusi/ai-processing')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Pemrosesan Dokumen AI
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('json-output', '#json-output')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Output API JSON
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('no-template', '#no-template')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Ekstraksi Tanpa Template
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('deployment', '#deployment')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Opsi Implementasi
+                                        </button>
 
-                                </div>
+                                    </div>
+                                )}
 
                                 {/* Solusi Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#solutions')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('solusi')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Solusi
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('customer-onboarding', '#customer-onboarding')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Customer Onboarding
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('solusi/accounts-payable', '#accounts-payable')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Accounts Payable
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('solusi/purchase-orders', '#purchase-orders')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Purchase Order Processing
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('solusi/industry-solutions', '#industry-solutions')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Solusi per Industri
-                                    </button>
-                                </div>
+                                {mobileOpen.solusi && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('customer-onboarding', '#customer-onboarding')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Customer Onboarding
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('solusi/accounts-payable', '#accounts-payable')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Accounts Payable
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('solusi/purchase-orders', '#purchase-orders')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Purchase Order Processing
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('solusi/industry-solutions', '#industry-solutions')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Solusi per Industri
+                                        </button>
+                                    </div>
+                                )}
 
                                 {/* Pelanggan Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#customers')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('pelanggan')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Pelanggan
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('banking', '#banking')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Perbankan
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('insurance', '#insurance')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Insurance
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('healthcare', '#healthcare')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Kesehatan
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('logistics', '#logistics')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Logistik
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('pelanggan/education', '#education')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Pendidikan
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('pelanggan/manufacturing', '#manufacturing')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Manufaktur
-                                    </button>
-                                </div>
+                                {mobileOpen.pelanggan && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('banking', '#banking')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Perbankan
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('insurance', '#insurance')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Insurance
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('healthcare', '#healthcare')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Kesehatan
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('logistics', '#logistics')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Logistik
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('pelanggan/education', '#education')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Pendidikan
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('pelanggan/manufacturing', '#manufacturing')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Manufaktur
+                                        </button>
+                                    </div>
+                                )}
 
                                 {/* Mitra Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#partners')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('mitra')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Mitra
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('mitra/partnership-opportunities', '#partnership-opportunities')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Peluang Kemitraan
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('mitra/partner-benefits', '#partner-benefits')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Keuntungan Partner
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('mitra/partner-types', '#partner-types')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Jenis Partner
-                                    </button>
-                                </div>
+                                {mobileOpen.mitra && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('mitra/partnership-opportunities', '#partnership-opportunities')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Peluang Kemitraan
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('mitra/partner-benefits', '#partner-benefits')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Keuntungan Partner
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('mitra/partner-types', '#partner-types')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Jenis Partner
+                                        </button>
+                                    </div>
+                                )}
 
                                 {/* Sumber Daya Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#resources')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('sumberDaya')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Sumber Daya
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('blog', '#blog')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Blog
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('case-studies', '#case-studies')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Studi Kasus
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('whitepapers', '#whitepapers')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Whitepaper
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('webinars', '#webinars')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Webinar
-                                    </button>
-                                </div>
+                                {mobileOpen.sumberDaya && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('blog', '#blog')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Blog
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('case-studies', '#case-studies')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Studi Kasus
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('whitepapers', '#whitepapers')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Whitepaper
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('webinars', '#webinars')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Webinar
+                                        </button>
+                                    </div>
+                                )}
 
                                 {/* Perusahaan Mobile */}
                                 <button
-                                    onClick={() => handleNavClick(null, '#company')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                                    onClick={() => toggleMobile('perusahaan')}
+                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
                                 >
                                     Perusahaan
                                 </button>
-                                <div className="ml-4 space-y-1">
-                                    <button
-                                        onClick={() => handleNavClick('about', '#about')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Tentang Kami
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('newsroom', '#newsroom')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Newsroom
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('careers', '#careers')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Karier
-                                    </button>
-                                    <button
-                                        onClick={() => handleNavClick('contact', '#contact')}
-                                        className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                    >
-                                        Hubungi Kami
-                                    </button>
-                                </div>
+                                {mobileOpen.perusahaan && (
+                                    <div className="ml-4 space-y-1">
+                                        <button
+                                            onClick={() => handleNavClick('about', '#about')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Tentang Kami
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('newsroom', '#newsroom')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Newsroom
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('careers', '#careers')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Karier
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavClick('contact', '#contact')}
+                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                                        >
+                                            Hubungi Kami
+                                        </button>
+                                    </div>
+                                )}
 
                                 <div className="px-3 py-2 space-y-2 border-t border-gray-200 mt-4 pt-4">
                                     <button
@@ -638,7 +658,7 @@ export default function Template() {
             </main>
 
             {/* Footer */}
-            <footer className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+            <footer className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden group">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-800/50 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-700/20 via-transparent to-transparent"></div>
@@ -648,11 +668,18 @@ export default function Template() {
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                         {/* Company Info */}
                         <div className="lg:col-span-1">
-                            <div className="flex items-center space-x-2 mb-6">
-                                <div className="w-8 h-8 bg-gradient-to-br from-white to-gray-100 rounded-lg flex items-center justify-center shadow-lg">
-                                    <span className="text-primary-800 font-bold">S</span>
+                            {/* Logo */}
+                            <div className="flex-shrink-0 space-y-4 mb-4">
+                                <div
+                                    className="flex items-center space-x-2 group cursor-pointer"
+                                    onClick={handleLogoClick}
+                                >
+                                    <img
+                                        src="/images/SnapInt.png"
+                                        alt="SnapInt Logo"
+                                        className="h-6 object-contain filter brightness-0 invert"
+                                    />
                                 </div>
-                                <span className="text-xl font-semibold text-white">snapint</span>
                             </div>
                             <p className="text-gray-200 mb-6 text-sm leading-relaxed">
                                 Transformasi setiap dokumen menjadi data terstruktur yang bersih dengan
