@@ -1,7 +1,7 @@
 import React from 'react';
 
-// About Us page – placeholder matching design pattern (Images 1)
-export default function AboutUsPage() {
+// Accounts Payable Automation page – reuse structure from ImprementasiOpsiPage
+export default function HumanResource() {
     return (
         <div className="bg-white text-gray-900">
             <section>
@@ -15,8 +15,8 @@ export default function AboutUsPage() {
                         </div>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-black">About Us</h1>
-                    <p className="mt-4 text-lg text-slate-600">Learn more about our company and vision</p>
+                    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-black">Human Resource Automation</h1>
+                    <p className="mt-4 text-lg text-slate-600">Automasi proses HR administratif dan dokumentasi karyawan</p>
 
                     {/* Notice card */}
                     <div className="mt-10">

@@ -78,54 +78,20 @@ export default function Template() {
 
                         {/* Desktop Navigation (centered via grid) */}
                         <nav className="hidden md:flex items-center justify-center gap-4 lg:gap-5 whitespace-nowrap justify-self-center">
-                            {/* Platform */}
-                            <div
-                                className="relative"
-                                onMouseEnter={() => setActiveDropdown('Platform')}
-                                onMouseLeave={() => setActiveDropdown(null)}
+                            <button
+                                onClick={() => handleNavClick('#')}
+                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
+                                type="button"
                             >
-                                <button
-                                    onClick={() => toggleDropdown('Platform')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
-                                    type="button"
-                                >
-                                    <span>Platform</span>
-                                    <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Platform' ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Platform Dropdown */}
-                                {activeDropdown === 'Platform' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
-                                        <button
-                                            onClick={() => handleNavClick('solusi/ai-processing')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Pemrosesan Dokumen AI
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('json-output')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Output API JSON
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('no-template')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Ekstraksi Tanpa Template
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('deployment')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Opsi Implementasi
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-
+                                <span>Home</span>
+                            </button>
+                            <button
+                                onClick={() => handleNavClick('about')}
+                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
+                                type="button"
+                            >
+                                <span>About</span>
+                            </button>
                             {/* Solusi */}
                             <div
                                 className="relative"
@@ -145,247 +111,52 @@ export default function Template() {
 
                                 {/* Solusi Dropdown */}
                                 {activeDropdown === 'Solusi' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
+                                    <div className="absolute top-full left-0 mt-0 w-fit whitespace-nowrap bg-white rounded-xl shadow-xl ring-1 ring-black/5 p-2 z-50 overflow-hidden animate-in fade-in-0 zoom-in-95">
                                         <button
-                                            onClick={() => handleNavClick('customer-onboarding')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
+                                            onClick={() => handleNavClick('solusi/finance')}
+                                            className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-md focus:outline-none"
                                         >
-                                            Customer Onboarding
+                                            Finance
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/accounts-payable')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
+                                            onClick={() => handleNavClick('solusi/human-resource')}
+                                            className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-md focus:outline-none"
                                         >
-                                            Accounts Payable
+                                            Human Resource
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/purchase-orders')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
+                                            onClick={() => handleNavClick('solusi/logistic')}
+                                            className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-md focus:outline-none"
                                         >
-                                            Purchase Order Processing
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('solusi/industry-solutions')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Solusi per Industri
+                                            Logistic
                                         </button>
                                     </div>
                                 )}
                             </div>
 
-                            {/* Pelanggan */}
-                            <div
-                                className="relative"
-                                onMouseEnter={() => setActiveDropdown('Pelanggan')}
-                                onMouseLeave={() => setActiveDropdown(null)}
+                            <button
+                                onClick={() => handleNavClick('blog')}
+                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
+                                type="button"
                             >
-                                <button
-                                    onClick={() => toggleDropdown('Pelanggan')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
-                                    type="button"
-                                >
-                                    <span>Pelanggan</span>
-                                    <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Pelanggan' ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Pelanggan Dropdown */}
-                                {activeDropdown === 'Pelanggan' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
-                                        <button
-                                            onClick={() => handleNavClick('banking')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Perbankan
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('insurance')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Insurance
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('healthcare')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Kesehatan
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('logistics')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Logistik
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('pelanggan/education')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Pendidikan
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('pelanggan/manufacturing')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Manufaktur
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Mitra */}
-                            <div
-                                className="relative"
-                                onMouseEnter={() => setActiveDropdown('Mitra')}
-                                onMouseLeave={() => setActiveDropdown(null)}
+                                <span>Blog</span>
+                            </button>
+                            <button
+                                onClick={() => handleNavClick('case-studies')}
+                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
+                                type="button"
                             >
-                                <button
-                                    onClick={() => toggleDropdown('Mitra')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
-                                    type="button"
-                                >
-                                    <span>Mitra</span>
-                                    <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Mitra' ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Mitra Dropdown */}
-                                {activeDropdown === 'Mitra' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
-                                        <button
-                                            onClick={() => handleNavClick('mitra/partnership-opportunities')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Peluang Kemitraan
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('mitra/partner-benefits')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Keuntungan Partner
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('mitra/partner-types')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Jenis Partner
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Sumber Daya */}
-                            <div
-                                className="relative"
-                                onMouseEnter={() => setActiveDropdown('Sumber Daya')}
-                                onMouseLeave={() => setActiveDropdown(null)}
-                            >
-                                <button
-                                    onClick={() => toggleDropdown('Sumber Daya')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
-                                    type="button"
-                                >
-                                    <span>Sumber Daya</span>
-                                    <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Sumber Daya' ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Sumber Daya Dropdown */}
-                                {activeDropdown === 'Sumber Daya' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
-                                        <button
-                                            onClick={() => handleNavClick('blog')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Blog
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('case-studies')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Studi Kasus
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('whitepapers')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Whitepaper
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('webinars')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Webinar
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Perusahaan */}
-                            <div
-                                className="relative"
-                                onMouseEnter={() => setActiveDropdown('Perusahaan')}
-                                onMouseLeave={() => setActiveDropdown(null)}
-                            >
-                                <button
-                                    onClick={() => toggleDropdown('Perusahaan')}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 font-medium text-sm focus:outline-none"
-                                    type="button"
-                                >
-                                    <span>Perusahaan</span>
-                                    <FaChevronDown
-                                        className={`text-xs transition-transform duration-200 ${activeDropdown === 'Perusahaan' ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Perusahaan Dropdown */}
-                                {activeDropdown === 'Perusahaan' && (
-                                    <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95">
-                                        <button
-                                            onClick={() => handleNavClick('about')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Tentang Kami
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('newsroom')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Newsroom
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('careers')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Karier
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('contact')}
-                                            className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 rounded-lg mx-2 focus:outline-none"
-                                        >
-                                            Hubungi Kami
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
+                                <span>Study Case</span>
+                            </button>
                         </nav>
 
                         {/* Language Selector & CTA Buttons */}
                         <div className="hidden md:flex items-center space-x-2 justify-self-end whitespace-nowrap">
                             <button
                                 onClick={() => handleNavigation('/demo')}
-                                className="border border-gray-200 bg-white hover:bg-gray-50 text-gray-900 px-4 h-10 rounded-2xl text-sm font-medium transition-colors duration-200 whitespace-nowrap focus:outline-none"
+                                className="bg-[#023FC8] hover:bg-[#00309B]/90 text-white px-5 h-10 rounded-2xl text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap focus:outline-none"
                             >
                                 Request Demo
-                            </button>
-                            <button
-                                onClick={() => handleNavigation('/free-trial')}
-                                className="bg-primary-800 hover:bg-primary-900 text-white px-5 h-10 rounded-2xl text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap focus:outline-none"
-                            >
-                                Get Started
                             </button>
                         </div>
 
@@ -404,43 +175,6 @@ export default function Template() {
                     {isMenuOpen && (
                         <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/90">
                             <div className="px-2 pt-2 pb-3 space-y-1">
-                                {/* Platform Mobile */}
-                                <button
-                                    onClick={() => toggleMobile('platform')}
-                                    className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium focus:outline-none"
-                                >
-                                    Platform
-                                </button>
-                                {mobileOpen.platform && (
-                                    <div className="ml-4 space-y-1">
-                                        <button
-                                            onClick={() => handleNavClick('solusi/ai-processing')}
-                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                        >
-                                            Pemrosesan Dokumen AI
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('json-output', '#json-output')}
-                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                        >
-                                            Output API JSON
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('no-template', '#no-template')}
-                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                        >
-                                            Ekstraksi Tanpa Template
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('deployment', '#deployment')}
-                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                        >
-                                            Opsi Implementasi
-                                        </button>
-
-                                    </div>
-                                )}
-
                                 {/* Solusi Mobile */}
                                 <button
                                     onClick={() => toggleMobile('solusi')}
@@ -451,28 +185,22 @@ export default function Template() {
                                 {mobileOpen.solusi && (
                                     <div className="ml-4 space-y-1">
                                         <button
-                                            onClick={() => handleNavClick('customer-onboarding', '#customer-onboarding')}
+                                            onClick={() => handleNavClick('solusi/finance', '#finance')}
                                             className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                                         >
-                                            Customer Onboarding
+                                            Finance
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/accounts-payable', '#accounts-payable')}
+                                            onClick={() => handleNavClick('solusi/human-resource', '#human-resource')}
                                             className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                                         >
-                                            Accounts Payable
+                                            Human Resource
                                         </button>
                                         <button
-                                            onClick={() => handleNavClick('solusi/purchase-orders', '#purchase-orders')}
+                                            onClick={() => handleNavClick('solusi/logistic', '#logistic')}
                                             className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                                         >
-                                            Purchase Order Processing
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavClick('solusi/industry-solutions', '#industry-solutions')}
-                                            className="block w-full text-left px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                                        >
-                                            Solusi per Industri
+                                            Logistic
                                         </button>
                                     </div>
                                 )}
@@ -658,18 +386,18 @@ export default function Template() {
             </main>
 
             {/* Footer */}
-            <footer className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden group">
+            <footer className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden group font-inter">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-800/50 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-700/20 via-transparent to-transparent"></div>
 
                 {/* Main Footer Content */}
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {/* Company Info */}
                         <div className="lg:col-span-1">
                             {/* Logo */}
-                            <div className="flex-shrink-0 space-y-4 mb-4">
+                            <div className="flex-shrink-0 space-y-4 mb-2">
                                 <div
                                     className="flex items-center space-x-2 group cursor-pointer"
                                     onClick={handleLogoClick}
@@ -707,131 +435,62 @@ export default function Template() {
                             </div>
 
                             {/* Social Links */}
-                            <div className="flex space-x-4 mt-6">
-                                <button className="text-gray-200 hover:text-white p-2 hover:bg-primary-700/30 rounded-lg transition-all duration-200 transform hover:scale-110">
+                            <div className="flex space-x-3 mt-6">
+                                <button aria-label="Twitter" className="text-gray-200 hover:text-white p-2 ring-1 ring-white/10 hover:ring-white/20 rounded-lg transition-all duration-200">
                                     <FaTwitter className="w-4 h-4" />
                                 </button>
-                                <button className="text-gray-200 hover:text-white p-2 hover:bg-primary-700/30 rounded-lg transition-all duration-200 transform hover:scale-110">
+                                <button aria-label="LinkedIn" className="text-gray-200 hover:text-white p-2 ring-1 ring-white/10 hover:ring-white/20 rounded-lg transition-all duration-200">
                                     <FaLinkedin className="w-4 h-4" />
                                 </button>
-                                <button className="text-gray-200 hover:text-white p-2 hover:bg-primary-700/30 rounded-lg transition-all duration-200 transform hover:scale-110">
+                                <button aria-label="GitHub" className="text-gray-200 hover:text-white p-2 ring-1 ring-white/10 hover:ring-white/20 rounded-lg transition-all duration-200">
                                     <FaGithub className="w-4 h-4" />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Footer Links */}
-                        <div className="lg:col-span-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-                            {/* Platform */}
+                        {/* Footer Links aligned with Header */}
+                        <div className="md:col-span-2 lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-40 justify-self-end max-w-2xl">
+                            {/* Navigation (matches header top-level) */}
                             <div>
-                                <h4 className="font-semibold mb-4">Platform</h4>
-                                <ul className="space-y-3">
+                                <h4 className="text-sm font-semibold uppercase tracking-normal text-slate-100 mb-3">Navigasi</h4>
+                                <ul className="space-y-2.5">
                                     <li>
-                                        <a href="#ai-processing" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Pemrosesan Dokumen AI
-                                        </a>
+                                        <a href="/" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Home</a>
                                     </li>
                                     <li>
-                                        <a href="#json-output" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Output API JSON
-                                        </a>
+                                        <a href="/about" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">About</a>
                                     </li>
                                     <li>
-                                        <a href="#no-template" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Ekstraksi Tanpa Template
-                                        </a>
+                                        <a href="/blog" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="#deployment" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Opsi Implementasi
-                                        </a>
+                                        <a href="/case-studies" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Study Case</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            {/* Solutions */}
+                            {/* Solusi (same as header dropdown) */}
                             <div>
-                                <h4 className="font-semibold mb-4">Solusi</h4>
-                                <ul className="space-y-3">
+                                <h4 className="text-sm font-semibold uppercase tracking-normal text-slate-100 mb-3">Solusi</h4>
+                                <ul className="space-y-2.5">
                                     <li>
-                                        <a href="#customer-onboarding" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Customer Onboarding
-                                        </a>
+                                        <a href="/solusi/finance" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Finance</a>
                                     </li>
                                     <li>
-                                        <a href="#accounts-payable" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Accounts Payable
-                                        </a>
+                                        <a href="/solusi/human-resource" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Human Resource</a>
                                     </li>
                                     <li>
-                                        <a href="#purchase-orders" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Purchase Order Processing
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#banking" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Solusi per Industri
-                                        </a>
+                                        <a href="/solusi/logistic" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Logistic</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            {/* Resources */}
+                            {/* CTA */}
                             <div>
-                                <h4 className="font-semibold mb-4">Sumber Daya</h4>
-                                <ul className="space-y-3">
+                                <h4 className="text-sm font-semibold uppercase tracking-normal text-slate-100 mb-3">Aksi</h4>
+                                <ul className="space-y-2.5">
                                     <li>
-                                        <a href="#blog" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Blog
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#case-studies" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Studi Kasus
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#whitepapers" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Whitepaper
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#webinars" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Webinar
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* Company */}
-                            <div>
-                                <h4 className="font-semibold mb-4">Perusahaan</h4>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <a href="#about" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Tentang Kami
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#careers" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Karier
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#newsroom" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Newsroom
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#partners" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Mitra
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#contact" className="text-sm text-slate-300 hover:text-white transition-colors duration-200">
-                                            Hubungi Kami
-                                        </a>
+                                        <a href="/demo" className="text-sm text-slate-300 hover:text-white transition-colors duration-150 hover:translate-x-0.5 inline-flex items-center">Request Demo</a>
                                     </li>
                                 </ul>
                             </div>
@@ -839,19 +498,19 @@ export default function Template() {
                     </div>
 
                     {/* Newsletter Signup */}
-                    <div className="mt-12 pt-8 border-t border-slate-700">
-                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                    <div className="mt-12 pt-8 border-t border-slate-700/80">
+                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                             <div>
                                 <h4 className="font-semibold mb-2">Tetap Update</h4>
                                 <p className="text-sm text-slate-300">
                                     Dapatkan insights terbaru tentang AI document processing dan automasi bisnis.
                                 </p>
                             </div>
-                            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
                                 <input
                                     type="email"
                                     placeholder="Masukkan email Anda"
-                                    className="px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 text-sm min-w-64"
+                                    className="px-4 py-2 rounded-lg bg-slate-700/80 border border-slate-600 text-white placeholder-slate-400 text-sm min-w-64 focus:outline-none focus:ring-2 focus:ring-white/20"
                                 />
                                 <button className="px-6 py-2 rounded-lg bg-white text-slate-800 hover:bg-slate-100 text-sm font-medium flex items-center transition-colors">
                                     <FaPaperPlane className="w-4 h-4 mr-2" />
@@ -865,7 +524,7 @@ export default function Template() {
                 {/* Bottom Footer */}
                 <div className="border-t border-slate-700">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
+                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                             {/* Compliance Badges */}
                             <div className="flex flex-wrap items-center gap-4">
                                 <div className="flex items-center space-x-2 text-xs text-slate-300">
@@ -887,16 +546,13 @@ export default function Template() {
                             </div>
 
                             {/* Legal Links */}
-                            <div className="flex flex-wrap items-center space-x-6 text-xs text-slate-300">
-                                <a href="#" className="hover:text-white transition-colors">
-                                    Kebijakan Privasi
-                                </a>
-                                <a href="#" className="hover:text-white transition-colors">
-                                    Syarat & Ketentuan
-                                </a>
-                                <a href="#" className="hover:text-white transition-colors">
-                                    Kebijakan Cookie
-                                </a>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-300">
+                                <a href="#" className="hover:text-white transition-colors">Kebijakan Privasi</a>
+                                <span className="opacity-30">•</span>
+                                <a href="#" className="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                                <span className="opacity-30">•</span>
+                                <a href="#" className="hover:text-white transition-colors">Kebijakan Cookie</a>
+                                <span className="opacity-30 hidden lg:inline">•</span>
                                 <span>© 2024 snapint. Hak cipta dilindungi.</span>
                             </div>
                         </div>

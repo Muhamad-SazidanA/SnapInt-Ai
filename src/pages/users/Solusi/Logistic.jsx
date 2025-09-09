@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Accounts Payable Automation page – reuse structure from ImprementasiOpsiPage
-export default function AccountsPayable() {
+export default function Logistic() {
     return (
         <div className="bg-white text-gray-900">
             <section>
@@ -15,8 +14,8 @@ export default function AccountsPayable() {
                         </div>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-black">Accounts Payable Automation</h1>
-                    <p className="mt-4 text-lg text-slate-600">Streamline invoice processing and payment workflows</p>
+                    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-black">Logistic Automation</h1>
+                    <p className="mt-4 text-lg text-slate-600">Optimasi dan automasi dokumentasi & proses logistik</p>
 
                     {/* Notice card */}
                     <div className="mt-10">

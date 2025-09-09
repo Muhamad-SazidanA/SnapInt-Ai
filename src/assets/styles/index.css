@@ -240,6 +240,14 @@
   }
 }
 
+@layer utilities {
+
+  /* Utility to force Inter font across any container */
+  .font-inter {
+    font-family: 'Inter', 'Inter-fallback', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
 /* Animations */
 @keyframes pulse {
 

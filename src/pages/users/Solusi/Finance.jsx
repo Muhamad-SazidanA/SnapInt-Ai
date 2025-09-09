@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     Users,
     ArrowRight,
-    BarChart3,
     Clock,
     Target,
     Shield,
@@ -13,12 +12,12 @@ import {
     CreditCard
 } from 'lucide-react';
 
-// Static JSX version (no loops) of Customer Onboarding page top sections
-export default function CustomerOnboarding() {
+// Full Finance (Customer Onboarding) page with all sections, only ROI Calculator buttons removed
+export default function Finance() {
     const [activeDocTab, setActiveDocTab] = useState('identity'); // identity | financial | business
     return (
         <div className="bg-white text-gray-900">
-            {/* Hero Section (AIProcessing style) */}
+            {/* Hero Section */}
             <section className="bg-gradient-to-br from-green-50 to-blue-100 py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
@@ -39,16 +38,13 @@ export default function CustomerOnboarding() {
                                 Demo Interactive
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </button>
-                            <button className="px-8 sm:px-10 py-3 sm:py-4 rounded-lg border border-slate-300 text-slate-700 bg-white font-semibold inline-flex items-center justify-center hover:bg-slate-50 transition-colors">
-                                ROI Calculator
-                                <BarChart3 className="w-4 h-4 ml-2" />
-                            </button>
+                            {/* ROI Calculator button removed */}
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Onboarding Challenges (manual, no loops) */}
+            {/* Onboarding Challenges */}
             <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
@@ -634,10 +630,7 @@ export default function CustomerOnboarding() {
                             Schedule Demo
                             <ArrowRight className="w-5 h-5 ml-2" />
                         </button>
-                        <button className="px-10 py-4 rounded-lg border border-white text-white font-semibold inline-flex items-center justify-center hover:bg-white hover:text-green-700 transition-colors">
-                            Calculate ROI
-                            <BarChart3 className="w-4 h-4 ml-2" />
-                        </button>
+                        {/* Bottom Calculate ROI button removed */}
                     </div>
                 </div>
             </section>
